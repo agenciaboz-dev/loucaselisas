@@ -125,7 +125,7 @@ export const useNavigationList = () => {
             {
                 id: 3,
                 title: "Sair",
-                location: "/logout",
+                location: "/",
                 icon: "",
             },
             {

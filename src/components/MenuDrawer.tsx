@@ -20,7 +20,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({}) => {
     const navigate = useNavigate()
 
     const { open, setOpen } = useMenuDrawer()
-    const { user } = useUser()
+    const { user, logout } = useUser()
 
     const iconStyle: SxProps = {
         width: "5vw",
