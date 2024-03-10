@@ -54,6 +54,6 @@ const UnauthenticatedRoutes = () => (
 
 export const Routes: React.FC<RoutesProps> = ({}) => {
     const { user } = useUser()
-    console.log("opa")
+
     return user ? user.admin ? <AdminRoutes user={user} /> : <UserRoutes user={user} /> : <UnauthenticatedRoutes />
 }
