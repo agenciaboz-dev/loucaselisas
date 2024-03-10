@@ -27,6 +27,7 @@ export const useMuiTheme = () => {
                     secondary: colors.secondary,
                     // disabled: colors.primary,
                 },
+                error: { main: "#B3261E" },
             },
         },
         deDE

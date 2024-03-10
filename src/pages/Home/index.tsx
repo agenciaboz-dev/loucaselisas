@@ -25,10 +25,15 @@ export const Home: React.FC<HomeProps> = ({}) => {
         >
             <img src={Logo} style={{ width: "85vw", height: "85vw" }} />
             <Box sx={{ width: "100%", p: "3vw", gap: "5vw", alignItems: "center" }}>
-                <ButtonLisas sx={button_style} onClick={() => navigate("/signup")}>
+                <ButtonLisas sx={button_style} onClick={() => navigate("/login")}>
                     Entrar
                 </ButtonLisas>
-                <p style={{ color: colors.secondary, fontSize: "3.2vw", textDecoration: "underline" }}>Criar Conta</p>
+                <p
+                    style={{ color: colors.secondary, fontSize: "3.2vw", textDecoration: "underline" }}
+                    onClick={() => navigate("/signup")}
+                >
+                    Criar Conta
+                </p>
             </Box>
         </Box>
     )
