@@ -9,6 +9,7 @@ import avatar from "../assets/logo/Avatar.png"
 
 import LogoutIcon from "@mui/icons-material/Logout"
 import { useMenuDrawer } from "../hooks/useMenuDrawer"
+import { colors } from "../styles/colors"
 
 interface MenuDrawerProps {}
 
@@ -24,6 +25,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({}) => {
     const iconStyle: SxProps = {
         width: "5vw",
         height: "auto",
+        color: colors.primary,
     }
 
     const iconButtonStyle: SxProps = {
@@ -31,16 +33,15 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({}) => {
         width: "9vw",
         padding: "1.5vw",
         color: "#fff",
+        alignSelf: "end",
     }
 
     const menuItemStyle: SxProps = {
-        fontSize: "3.8vw",
-        fontFamily: "MalgunGothicBold",
+        fontSize: "1.2rem",
         height: "fit-content",
         alignItems: "center",
         padding: "0 4vw",
-        color: "#fff",
-        gap: "2vw",
+        color: colors.primary,
     }
 
     const handleClose = () => {
@@ -49,7 +50,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({}) => {
 
     return (
         <Drawer
-            anchor={"right"}
+            anchor={"left"}
             open={open}
             onClose={handleClose}
             PaperProps={{
@@ -57,10 +58,9 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({}) => {
                     padding: "6vw 3vw",
                     width: "75vw",
                     height: "100%",
-                    borderTopLeftRadius: "10vw",
-                    borderBottomLeftRadius: "10vw",
+
                     overflowX: "hidden",
-                    backgroundColor: "#232323",
+                    backgroundColor: colors.terciary,
                     justifyContent: "space-between",
                 },
             }}
@@ -68,13 +68,16 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({}) => {
             keepMounted
         >
             <Box>
-                <Box sx={{ justifyContent: "space-between", width: "100%", padding: "4vw" }}>
+                <Box sx={{ justifyContent: "space-between", width: "100%", padding: "4vw", gap: "5vw" }}>
                     <IconButton color="default" sx={iconButtonStyle} onClick={handleClose}>
                         <KeyboardBackspaceIcon sx={iconStyle} />
                     </IconButton>
-                    <Box sx={{ alignItems: "center", gap: "6vw" }}>
-                        <Avatar sx={{ width: "50vw", height: "50vw", alignSelf: "center" }} />
-                        <p style={{ color: "#fff", fontSize: "5vw" }}>{user?.name}</p>
+                    <Box sx={{ alignItems: "center", gap: "4vw", flexDirection: "row" }}>
+                        <Avatar sx={{ width: "15vw", height: "15vw", alignSelf: "center" }} />
+                        <Box>
+                            <p style={{ color: colors.primary, fontSize: "1.1rem" }}>@{user?.username}</p>
+                            <p style={{ color: colors.primary, fontSize: "0.8rem" }}>{user?.name}</p>
+                        </Box>
                     </Box>
                 </Box>
                 {/*  */}
@@ -93,28 +96,6 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({}) => {
                         </MenuItem>
                     ))}
                 </Box>
-            </Box>
-
-            <Box sx={{ width: "100%", alignItems: "end" }}>
-                <MenuItem
-                    sx={{
-                        fontSize: "3.8vw",
-                        height: "fit-content",
-                        padding: "0 4vw",
-                        marginTop: "auto",
-                        fontFamily: "MalgunGothicBold",
-                        color: "#fff",
-                        gap: "1.5vw",
-                        width: "100%",
-                        justifyContent: "end",
-                    }}
-                    onClick={() => {
-                        // logout()
-                        handleClose()
-                    }}
-                >
-                    <LogoutIcon sx={{ color: "#fff", width: "6vw" }} />
-                </MenuItem>
             </Box>
         </Drawer>
     )

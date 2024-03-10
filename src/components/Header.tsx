@@ -3,6 +3,9 @@ import { useUser } from "../hooks/useUser"
 import { useNavigate } from "react-router-dom"
 import { useMenuDrawer } from "../hooks/useMenuDrawer"
 import { useHeader } from "../hooks/useHeader"
+import { TextFieldLisas } from "./TextFieldLisas"
+import { CiBellOn } from "react-icons/ci"
+import { PiArrowLeftThin } from "react-icons/pi"
 
 interface HeaderProps {
     back?: boolean
@@ -36,27 +39,26 @@ export const Header: React.FC<HeaderProps> = ({ back, location, style }) => {
                 background: "transparent",
                 borderRadius: 0,
                 position: "fixed",
-                top: 0,
-                ...style,
             }}
         >
-            <Box sx={{ flexDirection: "row", alignItems: "center" }}>
-                <IconButton
-                    color="primary"
-                    onClick={() => (!back ? menuDrawer.toggle() : navigate(`${location}`))}
-                ></IconButton>
-                <p style={{ color: "#fff" }}>{header.title}</p>
-            </Box>
-            {/* <IconButton color="primary" onClick={notifications.toggle}> */}
             <Box style={{ flexDirection: "row", gap: "4vw", alignItems: "center" }}>
-                <Avatar
-                    // src={user?.image}
-                    style={{ color: "#fff", width: "8vw", height: "8vw" }}
-                    onClick={() => {
-                        menuDrawer.toggle()
-                        console.log("abriu")
-                    }}
-                />
+                {back ? (
+                    <IconButton sx={{ bgcolor: "#D9D9D9" }} onClick={() => navigate(location ? location : "/")}>
+                        <PiArrowLeftThin />
+                    </IconButton>
+                ) : (
+                    <Avatar
+                        src={user?.image || ""}
+                        style={{ color: "#fff", width: "10vw", height: "10vw" }}
+                        onClick={() => {
+                            menuDrawer.toggle()
+                        }}
+                    />
+                )}
+                <TextFieldLisas value={user?.name} InputProps={{ readOnly: true }} disabled />
+                <IconButton sx={{ bgcolor: "#D9D9D9" }}>
+                    <CiBellOn />
+                </IconButton>
             </Box>
         </Paper>
     )

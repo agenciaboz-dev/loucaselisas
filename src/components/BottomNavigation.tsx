@@ -60,8 +60,8 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({ external, se
                                     height: "100%",
 
                                     background: currentLocation?.id === item.id ? "#ECE6F0" : "transparent",
-                                    borderRadius: "3vw", // Adicione borda circular para o ícone
-                                    padding: "3vw", // Ajuste o padding conforme necessário
+                                    borderRadius: "3vw",
+                                    padding: "3vw",
                                 }}
                             >
                                 {item.icon}

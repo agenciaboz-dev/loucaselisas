@@ -72,7 +72,7 @@ export const useNavigationList = () => {
             {
                 id: 1,
                 title: "Painel",
-                location: "/panel",
+                location: "/home",
                 icon: <CiGrid41 style={iconStyle} />,
             },
 
@@ -163,7 +163,7 @@ export const useNavigationList = () => {
             {
                 id: 1,
                 title: "Painel",
-                location: "/panel",
+                location: "/home",
                 icon: <CiGrid41 style={iconStyle} />,
             },
 
@@ -254,7 +254,7 @@ export const useNavigationList = () => {
             {
                 id: 1,
                 title: "Painel",
-                location: "/panel",
+                location: "/home",
                 icon: <CiGrid41 style={iconStyle} />,
             },
 
