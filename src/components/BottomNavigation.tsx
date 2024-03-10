@@ -40,7 +40,7 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({ external, se
                 position: "fixed",
                 left: 0,
                 bottom: 0,
-                justifyContent: "space-between",
+                // justifyContent: "space-between",
                 width: "100%",
             }}
         >
@@ -49,18 +49,32 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({ external, se
                 return (
                     <BottomNavigationAction
                         key={item.id}
-                        label={<p style={{ fontSize: "2.5vw" }}>{item.title}</p>}
-                        icon={item.icon}
+                        label={<p style={{ fontSize: "2.5vw", color: colors.primary }}>{item.title}</p>}
+                        icon={
+                            <span
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    width: "100%",
+                                    height: "100%",
+
+                                    background: currentLocation?.id === item.id ? "#ECE6F0" : "transparent",
+                                    borderRadius: "3vw", // Adicione borda circular para o ícone
+                                    padding: "3vw", // Ajuste o padding conforme necessário
+                                }}
+                            >
+                                {item.icon}
+                            </span>
+                        }
                         value={item.id}
                         sx={{
-                            color: currentLocation?.id == item.id ? "white" : colors.text.black,
-                            background: currentLocation?.id == item.id ? colors.text.black : "",
+                            color: currentLocation?.id === item.id ? colors.primary : "",
                             borderRadius: "2vw",
                             gap: "1vw",
-                            padding: "0",
 
                             "&.Mui-selected": {
-                                color: "white",
+                                color: colors.primary,
                             },
                         }}
                     />

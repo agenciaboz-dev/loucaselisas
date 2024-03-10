@@ -1,10 +1,16 @@
 import { SxProps } from "@mui/material"
 import { useUser } from "./useUser"
+import { IoSearchOutline } from "react-icons/io5"
+import { LiaHeart } from "react-icons/lia"
+import { SlSettings } from "react-icons/sl"
+import { CiGrid41 } from "react-icons/ci"
+import { LiaUserEditSolid } from "react-icons/lia"
+import { colors } from "../styles/colors"
 
 export const useNavigationList = () => {
     const { user } = useUser()
 
-    const iconStyle: SxProps = { color: "#232323" }
+    const iconStyle = { color: colors.primary, height: "6vw", width: "6vw" }
 
     const admin: NavigationMenu = {
         id: 1,
@@ -15,20 +21,50 @@ export const useNavigationList = () => {
         drawer: [
             {
                 id: 1,
-                title: "Meu Perfil",
-                location: "/profile",
+                title: "Ver Conta",
+                location: "/account",
                 icon: "",
             },
             {
                 id: 2,
-                title: "Cadastrar Colaborador",
-                location: "/new_employee",
+                title: "Perfil",
+                location: "/profile",
                 icon: "",
             },
             {
                 id: 3,
-                title: "Cadastrar Cliente",
-                location: "/new_producer",
+                title: "Sair",
+                location: "/logout",
+                icon: "",
+            },
+            {
+                id: 8,
+                title: "-",
+                location: "",
+                icon: "",
+            },
+            {
+                id: 4,
+                title: "Suporte",
+                location: "/support",
+                icon: "",
+            },
+            {
+                id: 5,
+                title: "Baixados",
+                location: "/download",
+                icon: "",
+            },
+            {
+                id: 6,
+                title: "Privacidade",
+                location: "/privacity",
+                icon: "",
+            },
+            {
+                id: 7,
+                title: "Termos",
+                location: "/termos",
                 icon: "",
             },
         ],
@@ -37,27 +73,33 @@ export const useNavigationList = () => {
                 id: 1,
                 title: "Painel",
                 location: "/panel",
-                icon: "",
+                icon: <CiGrid41 style={iconStyle} />,
             },
 
             {
                 id: 2,
-                title: "Calendário",
-                location: "/calendar",
-                icon: "",
+                title: "Criador",
+                location: "/create",
+                icon: <LiaUserEditSolid style={iconStyle} />,
             },
 
             {
                 id: 3,
-                title: "Chamados",
-                location: "/calls",
+                title: "Buscar",
+                location: "/searchs",
+                icon: <IoSearchOutline style={iconStyle} />,
+            },
+            {
+                id: 4,
+                title: "Favoritos",
+                location: "/favorites",
                 icon: "",
             },
             {
                 id: 4,
-                title: "Análises",
-                location: "/reviews",
-                icon: "",
+                title: "Config",
+                location: "/settings",
+                icon: <SlSettings style={iconStyle} />,
             },
         ],
     }
@@ -65,25 +107,55 @@ export const useNavigationList = () => {
         id: 1,
         title: "Administrador",
         //hidden: user?.adm == false,
-        location: "/admin",
+        location: "/creator",
         icon: "",
         drawer: [
             {
                 id: 1,
-                title: "Meu Perfil",
-                location: "/profile",
+                title: "Ver Conta",
+                location: "/account",
                 icon: "",
             },
             {
                 id: 2,
-                title: "Cadastrar Colaborador",
-                location: "/new_employee",
+                title: "Perfil",
+                location: "/profile",
                 icon: "",
             },
             {
                 id: 3,
-                title: "Cadastrar Cliente",
-                location: "/new_producer",
+                title: "Sair",
+                location: "/logout",
+                icon: "",
+            },
+            {
+                id: 8,
+                title: "-",
+                location: "",
+                icon: "",
+            },
+            {
+                id: 4,
+                title: "Suporte",
+                location: "/support",
+                icon: "",
+            },
+            {
+                id: 5,
+                title: "Baixados",
+                location: "/download",
+                icon: "",
+            },
+            {
+                id: 6,
+                title: "Privacidade",
+                location: "/privacity",
+                icon: "",
+            },
+            {
+                id: 7,
+                title: "Termos",
+                location: "/termos",
                 icon: "",
             },
         ],
@@ -92,53 +164,89 @@ export const useNavigationList = () => {
                 id: 1,
                 title: "Painel",
                 location: "/panel",
-                icon: "",
+                icon: <CiGrid41 style={iconStyle} />,
             },
 
             {
                 id: 2,
-                title: "Calendário",
-                location: "/calendar",
-                icon: "",
+                title: "Criador",
+                location: "/create",
+                icon: <LiaUserEditSolid style={iconStyle} />,
             },
 
             {
                 id: 3,
-                title: "Chamados",
-                location: "/calls",
-                icon: "",
+                title: "Buscar",
+                location: "/searchs",
+                icon: <IoSearchOutline style={iconStyle} />,
             },
             {
                 id: 4,
-                title: "Análises",
-                location: "/reviews",
-                icon: "",
+                title: "Favoritos",
+                location: "/favorites",
+                icon: <LiaHeart style={iconStyle} />,
+            },
+            {
+                id: 5,
+                title: "Config",
+                location: "/settings",
+                icon: <SlSettings style={iconStyle} />,
             },
         ],
     }
     const student: NavigationMenu = {
         id: 1,
-        title: "Administrador",
+        title: "Cliente",
         //hidden: user?.adm == false,
-        location: "/admin",
+        location: "/student",
         icon: "",
         drawer: [
             {
                 id: 1,
-                title: "Meu Perfil",
-                location: "/profile",
+                title: "Ver Conta",
+                location: "/account",
                 icon: "",
             },
             {
                 id: 2,
-                title: "Cadastrar Colaborador",
-                location: "/new_employee",
+                title: "Perfil",
+                location: "/profile",
                 icon: "",
             },
             {
                 id: 3,
-                title: "Cadastrar Cliente",
-                location: "/new_producer",
+                title: "Sair",
+                location: "/logout",
+                icon: "",
+            },
+            {
+                id: 8,
+                title: "-",
+                location: "",
+                icon: "",
+            },
+            {
+                id: 4,
+                title: "Suporte",
+                location: "/support",
+                icon: "",
+            },
+            {
+                id: 5,
+                title: "Baixados",
+                location: "/download",
+                icon: "",
+            },
+            {
+                id: 6,
+                title: "Privacidade",
+                location: "/privacity",
+                icon: "",
+            },
+            {
+                id: 7,
+                title: "Termos",
+                location: "/termos",
                 icon: "",
             },
         ],
@@ -147,27 +255,27 @@ export const useNavigationList = () => {
                 id: 1,
                 title: "Painel",
                 location: "/panel",
-                icon: "",
+                icon: <CiGrid41 style={iconStyle} />,
             },
 
             {
                 id: 2,
-                title: "Calendário",
-                location: "/calendar",
-                icon: "",
+                title: "Buscar",
+                location: "/searchs",
+                icon: <IoSearchOutline style={iconStyle} />,
             },
 
             {
                 id: 3,
-                title: "Chamados",
-                location: "/calls",
-                icon: "",
+                title: "Favoritos",
+                location: "/favorites",
+                icon: <LiaHeart style={iconStyle} />,
             },
             {
                 id: 4,
-                title: "Análises",
-                location: "/reviews",
-                icon: "",
+                title: "Config",
+                location: "/settings",
+                icon: <SlSettings style={iconStyle} />,
             },
         ],
     }
