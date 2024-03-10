@@ -13,6 +13,7 @@ import { useCpfMask, usePhoneMask } from "burgos-masks"
 import { useEstadosBrasil } from "../../hooks/useEstadosBrasil"
 import { usePronoun } from "../../hooks/usePronoun"
 import { colors } from "../../styles/colors"
+import { TextFieldLisas } from "../../components/TextFieldLisas"
 
 interface FormProps {
     values: Partial<User>
@@ -61,23 +62,23 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
 
     return (
         <Box sx={{ width: "100%", gap: "2vw", alignItems: "center", justifyContent: "center" }}>
-            <TextField
+            <TextFieldLisas
                 label="Nome"
                 placeholder="Nome"
                 name="name"
                 value={values.name}
                 onChange={handleChange}
-                sx={{ ...textField, width: "100%" }}
+                sx={{ width: "100%" }}
                 required
             />
             <Box sx={{ flexDirection: "row", gap: "2vw" }}>
-                <TextField
+                <TextFieldLisas
                     label="CPF"
                     placeholder="CPF"
                     name="cpf"
                     value={values.cpf}
                     onChange={handleChange}
-                    sx={{ ...textField, width: "100%" }}
+                    sx={{ width: "100%" }}
                     InputProps={{
                         inputComponent: MaskedInputNando,
                         inputProps: { mask: useCpfMask, inputMode: "numeric" },
@@ -85,7 +86,7 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
                     required
                 />
 
-                <TextField
+                <TextFieldLisas
                     select
                     onChange={handleChange}
                     label="UF"
@@ -124,7 +125,7 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
                             {estado.value}
                         </MenuItem>
                     ))}
-                </TextField>
+                </TextFieldLisas>
             </Box>
             <LocalizationProvider
                 dateAdapter={AdapterDayjs}
@@ -146,58 +147,57 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
                     </ThemeProvider>
                 </DemoContainer>
             </LocalizationProvider>
-            <TextField
+            <TextFieldLisas
                 label="E-mail"
                 placeholder="E-mail"
                 name="email"
                 type="email"
                 value={values.email}
                 onChange={handleChange}
-                sx={{ ...textField, width: "100%" }}
+                sx={{ width: "100%" }}
                 required
             />
             <Box sx={{ flexDirection: "row", gap: "2vw" }}>
-                <TextField
+                <TextFieldLisas
                     label="Username"
                     placeholder="Username"
                     name="username"
                     value={values.username}
                     onChange={handleChange}
-                    sx={{ ...textField, width: "100%" }}
+                    sx={{ width: "100%" }}
                     required
                 />
-                <TextField
+                <TextFieldLisas
                     label="Senha"
                     placeholder="Senha"
                     name="password"
                     type="password"
                     value={values.password}
                     onChange={handleChange}
-                    sx={{ ...textField, width: "100%" }}
+                    sx={{ width: "100%" }}
                     required
                 />
             </Box>
             <Box sx={{ flexDirection: "row", gap: "3vw" }}>
-                <TextField
+                <TextFieldLisas
                     label="Telefone"
                     placeholder="Telefone"
                     name="phone"
                     value={values.phone}
                     onChange={handleChange}
-                    sx={{ ...textField, width: "100%" }}
+                    sx={{ width: "100%" }}
                     InputProps={{
                         inputComponent: MaskedInputNando,
                         inputProps: { mask: usePhoneMask, inputMode: "numeric" },
                     }}
                     required
                 />
-                <TextField
+                <TextFieldLisas
                     select
                     onChange={handleChange}
                     label="Pronome"
                     name="pronoun"
                     sx={{
-                        ...textField,
                         width: "100%",
                     }}
                     value={values.pronoun}
@@ -230,7 +230,7 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
                             {pronoun.value}
                         </MenuItem>
                     ))}
-                </TextField>
+                </TextFieldLisas>
             </Box>
         </Box>
     )
