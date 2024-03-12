@@ -3,12 +3,16 @@ import React from "react"
 import { colors } from "../../styles/colors"
 import { User } from "../../types/server/class"
 import { ButtonLisas } from "../../components/ButtonLisas"
+import { CiCreditCard2 } from "react-icons/ci"
+import { ArrowLeftIcon, ArrowRightIcon } from "@mui/x-date-pickers"
+import { Navigate, useNavigate } from "react-router-dom"
 
 interface PerfilProps {
     user: User
 }
 
 export const Perfil: React.FC<PerfilProps> = ({ user }) => {
+    const navigate = useNavigate()
     return (
         <Box sx={{ width: "100%", flex: 1, flexDirection: "column" }}>
             <Box sx={{ width: "100%", height: "100%", padding: "3vw" }}>
@@ -46,6 +50,21 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                 Conhecer outros planos
                             </ButtonLisas>
                         </Box>
+
+                        <ButtonLisas
+                            sx={{
+                                alignItems: "center",
+                                gap: "2vw",
+                                alignSelf: "flex-start",
+                                justifyContent: "space-between",
+                                width: "100%",
+                                fontSize: "0.9rem",
+                            }}
+                            onClick={() => navigate("/account/cards")}
+                        >
+                            Cartões de pagamentos salvos
+                            <ArrowRightIcon />
+                        </ButtonLisas>
                     </Box>
                 </Box>
             </Box>
