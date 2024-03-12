@@ -41,7 +41,10 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                         >
                             <p style={{ fontSize: "0.8rem" }}>Seu plano</p>
                             <p style={{ fontSize: "1.5rem" }}>Free</p>
-                            <ButtonLisas variant="outlined" sx={{}}> Conhecer outros planos</ButtonLisas>
+                            <ButtonLisas variant="outlined" sx={{ fontWeight: "600" }}>
+                                {" "}
+                                Conhecer outros planos
+                            </ButtonLisas>
                         </Box>
                     </Box>
                 </Box>
