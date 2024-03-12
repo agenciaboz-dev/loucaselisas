@@ -45,7 +45,7 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({ external, se
             }}
         >
             <BottomNavigationAction value={0} sx={{ display: "none" }} />
-            {section.bottom?.map((item) => {
+            {section.bottom?.map((item,index) => {
                 return (
                     <BottomNavigationAction
                         key={item.id}

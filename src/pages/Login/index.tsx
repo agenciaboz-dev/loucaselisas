@@ -11,6 +11,9 @@ import { useSnackbar } from "burgos-snackbar"
 import { textField } from "../../styles/textField"
 import { ButtonLisas } from "../../components/ButtonLisas"
 import { useNavigate } from "react-router-dom"
+import { FcGoogle } from "react-icons/fc"
+import { useGoogleLogin } from "@react-oauth/google"
+import { GoogleLogin } from "@react-oauth/google"
 
 interface LoginProps {}
 
@@ -33,7 +36,11 @@ export const Login: React.FC<LoginProps> = ({}) => {
             console.log({ User: data })
             setUser(data)
             snackbar({ severity: "success", text: "Você está logado!" })
-            navigate(data.admin ? "/admin" : data.student ? "/student" : data.creator ? "/creator" : "/home")
+            navigate(data.admin ? "/admin" : data.student ? "/student" : data.creator ? "/creator" : "/student")
+        })
+
+        io.on("user:login:error", (error) => {
+            snackbar({ severity: "error", text: "Algo deu errado!" })
         })
 
         return () => {
@@ -86,10 +93,27 @@ export const Login: React.FC<LoginProps> = ({}) => {
                         Cadastre-se
                     </ButtonLisas>
                 </Box>
-                <Box sx={{ width: "100%", alignItems: "center" }}>
+                <Box sx={{ width: "100%", alignItems: "center", gap: "2vw" }}>
                     <ButtonLisas sx={{ fontSize: "3.5vw", width: "50%" }} invert type="submit">
                         Entrar
                     </ButtonLisas>
+                    <ButtonLisas
+                        sx={{ fontSize: "3.5vw", width: "60%", bgcolor: "transparent", color: colors.primary, gap: "2vw" }}
+                        invert
+                        // onClick={() => login()}
+                    >
+                        <FcGoogle style={{ width: "5vw", height: "5vw" }} />
+                        Entrar com o google
+                    </ButtonLisas>
+                    {/* <GoogleLogin
+                        onSuccess={(credentialResponse) => {
+                            console.log(credentialResponse)
+                        }}
+                        onError={() => {
+                            console.log("Login Failed")
+                        }}
+                        useOneTap
+                    /> */}
                 </Box>
             </form>
         </Box>

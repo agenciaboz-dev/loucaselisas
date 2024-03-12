@@ -1,3 +1,3 @@
-export class Course {
-    constructor() {}
+export declare class Course {
+    constructor();
 }

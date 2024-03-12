@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"
 import { useUser } from "../../hooks/useUser"
 import { useSnackbar } from "burgos-snackbar"
 import { useFormik } from "formik"
-import { User } from "../../types/server/class"
+import { User, UserForm } from "../../types/server/class"
 import { ButtonLisas } from "../../components/ButtonLisas"
 
 import MaskedInputNando from "../../components/MaskedNando"
@@ -32,12 +32,10 @@ export const Signup: React.FC<SignupProps> = ({}) => {
     const { unmask } = useDataHandler()
     const { setUser } = useUser()
     const { snackbar } = useSnackbar()
-    const estados = useEstadosBrasil()
 
-    const pronoun = usePronoun()
     const [pickDate, setPickDate] = useState<Dayjs | null>(null)
 
-    const formik_signup = useFormik<Partial<User>>({
+    const formik_signup = useFormik<UserForm>({
         initialValues: {
             username: "",
             email: "",
@@ -48,6 +46,13 @@ export const Signup: React.FC<SignupProps> = ({}) => {
             phone: "",
             pronoun: "",
             uf: "",
+            bio: "",
+            student: true,
+            cover: null,
+            creator: null,
+            google_id: null,
+            google_token: null,
+            image: null,
         },
         onSubmit: (values) => {
             const data = {
@@ -66,7 +71,7 @@ export const Signup: React.FC<SignupProps> = ({}) => {
             console.log({ User: data })
             setUser(data)
             snackbar({ severity: "success", text: "Você está logado!" })
-            navigate(data.admin ? "/admin" : data.student ? "/student" : data.creator ? "/creator" : "/panel")
+            navigate(data.admin ? "/admin" : data.student ? "/student" : data.creator ? "/creator" : "/home")
         })
 
         return () => {
@@ -103,10 +108,7 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                     <ButtonLisas sx={{ fontSize: "3.5vw", width: "50%" }} invert type="submit">
                         Cadastrar
                     </ButtonLisas>
-                    <ButtonLisas
-                        sx={{ fontSize: "3vw", textDecoration: "underline",}}
-                        onClick={() => navigate("/home")}
-                    >
+                    <ButtonLisas sx={{ fontSize: "3vw", textDecoration: "underline" }} onClick={() => navigate("/home")}>
                         Voltar
                     </ButtonLisas>
                 </Box>

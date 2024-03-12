@@ -22,6 +22,7 @@ const AdminRoutes: React.FC<{ user: User }> = ({ user }) => {
             <BottomNavigation section={bottomMenu.admin} />
             <ReactRoutes>
                 <Route path="/admin/*" element={<Admin user={user} />} />
+                <Route path="/account" element={<Profile user={user} />} />
             </ReactRoutes>
         </>
     )
@@ -38,7 +39,7 @@ const UserRoutes: React.FC<{ user: User }> = ({ user }) => {
                 ) : (
                     <Route path="/creator/*" element={<Creator user={user} />} />
                 )}
-                <Profile user={user} />
+                <Route path="/account" element={<Profile user={user} />} />
             </ReactRoutes>
         </>
     )

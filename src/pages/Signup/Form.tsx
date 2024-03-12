@@ -1,5 +1,5 @@
 import React from "react"
-import { User } from "../../types/server/class"
+import { User, UserForm } from "../../types/server/class"
 import { Box, MenuItem, TextField, ThemeProvider, createTheme } from "@mui/material"
 import { LocalizationProvider, MobileDatePicker, ptBR } from "@mui/x-date-pickers"
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
@@ -16,7 +16,7 @@ import { colors } from "../../styles/colors"
 import { TextFieldLisas } from "../../components/TextFieldLisas"
 
 interface FormProps {
-    values: Partial<User>
+    values: UserForm
     handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined
     pickDate: dayjs.Dayjs | null
     setPickDate: React.Dispatch<React.SetStateAction<dayjs.Dayjs | null>>
