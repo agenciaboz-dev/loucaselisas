@@ -9,14 +9,5 @@ interface PanelProps {
 }
 
 export const Panel: React.FC<PanelProps> = ({ user }) => {
-    const header = useHeader()
-
-    useEffect(() => {
-        header.setTitle(user.name)
-    }, [])
-    return (
-        <Box>
-            <Header />
-        </Box>
-    )
+    return <Box></Box>
 }

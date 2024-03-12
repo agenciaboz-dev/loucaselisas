@@ -38,7 +38,6 @@ export const Header: React.FC<HeaderProps> = ({ back, location, style }) => {
                 fontWeight: "bold",
                 background: "transparent",
                 borderRadius: 0,
-                position: "fixed",
             }}
         >
             <Box style={{ flexDirection: "row", gap: "4vw", alignItems: "center" }}>

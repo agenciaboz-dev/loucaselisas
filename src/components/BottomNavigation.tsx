@@ -37,7 +37,7 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({ external, se
                 background: "transparent",
                 padding: "4vw",
                 height: "10vh",
-                position: "fixed",
+                // position: "fixed",
                 left: 0,
                 bottom: 0,
                 // justifyContent: "space-between",

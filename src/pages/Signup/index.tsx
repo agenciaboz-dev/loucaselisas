@@ -1,7 +1,7 @@
 import { Box, MenuItem, TextField, ThemeProvider, createTheme } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { colors } from "../../styles/colors"
-import Logo from "../../assets/Logo/logoInvertida.png"
+import Logo from "../../assets/Logo/logo.webp"
 import { textField } from "../../styles/textField"
 import { useIo } from "../../hooks/useIo"
 import { useNavigate } from "react-router-dom"
@@ -92,7 +92,11 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                 overflowY: "auto",
             }}
         >
-            <img src={Logo} style={{ width: "45vw", height: "45vw" }} onClick={() => navigate("/home")} />
+            <img
+                src={Logo}
+                style={{ width: "45vw", height: "45vw", filter: "invert(1)" }}
+                onClick={() => navigate("/home")}
+            />
             <p style={{ marginLeft: "7vw", alignSelf: "flex-start" }}>Cadastre seus dados</p>
 
             <form onSubmit={formik_signup.handleSubmit}>

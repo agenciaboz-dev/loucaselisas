@@ -31,12 +31,7 @@ export const useNavigationList = () => {
                 location: "/profile",
                 icon: "",
             },
-            // {
-            //     id: 3,
-            //     title: "Sair",
-            //     location: "/logout",
-            //     icon: "",
-            // },
+
             {
                 id: 7,
                 title: "-",
@@ -62,7 +57,7 @@ export const useNavigationList = () => {
                 icon: "",
             },
             {
-                id:6,
+                id: 6,
                 title: "Termos",
                 location: "/termos",
                 icon: "",
@@ -93,7 +88,7 @@ export const useNavigationList = () => {
                 id: 4,
                 title: "Favoritos",
                 location: "/favorites",
-                icon: "",
+                icon: <LiaHeart style={iconStyle} />,
             },
             {
                 id: 5,
@@ -105,7 +100,7 @@ export const useNavigationList = () => {
     }
     const creator: NavigationMenu = {
         id: 1,
-        title: "Administrador",
+        title: "Criador",
         //hidden: user?.adm == false,
         location: "/creator",
         icon: "",
@@ -122,12 +117,7 @@ export const useNavigationList = () => {
                 location: "/profile",
                 icon: "",
             },
-            {
-                id: 3,
-                title: "Sair",
-                location: "/",
-                icon: "",
-            },
+
             {
                 id: 8,
                 title: "-",
@@ -213,12 +203,7 @@ export const useNavigationList = () => {
                 location: "/profile",
                 icon: "",
             },
-            {
-                id: 3,
-                title: "Sair",
-                location: "/logout",
-                icon: "",
-            },
+
             {
                 id: 8,
                 title: "-",

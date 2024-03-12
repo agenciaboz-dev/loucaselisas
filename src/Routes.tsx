@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Routes as ReactRoutes, Route } from "react-router-dom"
 import { User } from "./types/server/class"
 import { useNavigationList } from "./hooks/useNavigationList"
@@ -11,19 +11,27 @@ import { Signup } from "./pages/Signup"
 import { useUser } from "./hooks/useUser"
 import { Creator } from "./pages/Creator"
 import { Profile } from "./pages/Profile"
+import { useHeader } from "./hooks/useHeader"
+import { Header } from "./components/Header"
 
 interface RoutesProps {}
 
 const AdminRoutes: React.FC<{ user: User }> = ({ user }) => {
     const bottomMenu = useNavigationList()
+    const header = useHeader()
+
+    useEffect(() => {
+        header.setTitle(user.name)
+    }, [])
 
     return (
         <>
-            <BottomNavigation section={bottomMenu.admin} />
+            <Header />
             <ReactRoutes>
                 <Route path="/admin/*" element={<Admin user={user} />} />
-                <Route path="/account" element={<Profile user={user} />} />
+                <Route path="/account/*" element={<Profile user={user} />} />
             </ReactRoutes>
+            <BottomNavigation section={bottomMenu.admin} />
         </>
     )
 }
@@ -39,7 +47,7 @@ const UserRoutes: React.FC<{ user: User }> = ({ user }) => {
                 ) : (
                     <Route path="/creator/*" element={<Creator user={user} />} />
                 )}
-                <Route path="/account" element={<Profile user={user} />} />
+                <Route path="/account/*" element={<Profile user={user} />} />
             </ReactRoutes>
         </>
     )

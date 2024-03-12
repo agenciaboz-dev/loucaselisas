@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { colors } from "../../styles/colors"
 import { Box, TextField } from "@mui/material"
-import Logo from "../../assets/Logo/logoInvertida.png"
+import Logo from "../../assets/Logo/logo.webp"
 import { useFormik } from "formik"
 import { LoginForm } from "../../types/frontend/LoginForm"
 import { useIo } from "../../hooks/useIo"
@@ -60,7 +60,11 @@ export const Login: React.FC<LoginProps> = ({}) => {
                 gap: "6vw",
             }}
         >
-            <img src={Logo} style={{ width: "68vw", height: "68vw" }} onClick={() => navigate("/home")} />
+            <img
+                src={Logo}
+                style={{ width: "68vw", height: "68vw", filter: "invert(1)" }}
+                onClick={() => navigate("/home")}
+            />
             <p>Entre na sua conta</p>
 
             <form onSubmit={formik_login.handleSubmit}>

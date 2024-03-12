@@ -1,6 +1,6 @@
 import { Box, SxProps } from "@mui/material"
 import React from "react"
-import Logo from "../../assets/Logo/logo.png"
+import Logo from "../../assets/Logo/logo.webp"
 import { colors } from "../../styles/colors"
 import { ButtonLisas } from "../../components/ButtonLisas"
 import { useNavigate } from "react-router-dom"
