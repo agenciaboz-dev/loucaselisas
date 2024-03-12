@@ -9,6 +9,7 @@ import { MenuDrawer } from "./components/MenuDrawer"
 import { UserProvider } from "./contexts/userContext"
 import { ThemeProvider } from "@mui/material"
 import { useMuiTheme } from "./hooks/useMuiTheme"
+import { GoogleOAuthProvider } from "@react-oauth/google"
 
 interface ProvidersProps {
     children: React.ReactNode
@@ -23,16 +24,18 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
             <SnackbarProvider>
                 <ConfirmDialogProvider>
                     <IoProvider>
-                        <UserProvider>
-                            <MenuDrawerProvider>
-                                <HeaderProvider>
-                                    <Snackbar />
-                                    <ConfirmDialog />
-                                    <MenuDrawer />
-                                    <MantineProvider theme={mantine_theme}>{children}</MantineProvider>
-                                </HeaderProvider>
-                            </MenuDrawerProvider>
-                        </UserProvider>
+                        <GoogleOAuthProvider clientId="">
+                            <UserProvider>
+                                <MenuDrawerProvider>
+                                    <HeaderProvider>
+                                        <Snackbar />
+                                        <ConfirmDialog />
+                                        <MenuDrawer />
+                                        <MantineProvider theme={mantine_theme}>{children}</MantineProvider>
+                                    </HeaderProvider>
+                                </MenuDrawerProvider>
+                            </UserProvider>
+                        </GoogleOAuthProvider>
                     </IoProvider>
                 </ConfirmDialogProvider>
             </SnackbarProvider>
