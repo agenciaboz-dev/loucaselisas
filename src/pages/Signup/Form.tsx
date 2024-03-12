@@ -57,9 +57,6 @@ const newTheme = (theme: any) =>
         },
     })
 export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setPickDate }) => {
-    const estados = useEstadosBrasil()
-    const pronoun = usePronoun()
-
     return (
         <Box sx={{ width: "100%", gap: "2vw", alignItems: "center", justifyContent: "center" }}>
             <TextFieldLisas
@@ -87,45 +84,18 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
                 />
 
                 <TextFieldLisas
-                    select
+                    label="Telefone"
+                    placeholder="Telefone"
+                    name="phone"
+                    value={values.phone}
                     onChange={handleChange}
-                    label="UF"
-                    name="uf"
-                    sx={{
-                        ...textField,
-                        width: "100%",
-                    }}
-                    value={values.uf}
+                    sx={{ width: "100%" }}
                     InputProps={{
-                        sx: {
-                            ...textField,
-                        },
-                    }}
-                    SelectProps={{
-                        MenuProps: {
-                            MenuListProps: { sx: { width: "100%", maxHeight: "80vw", overflowY: "auto" } },
-                        },
+                        inputComponent: MaskedInputNando,
+                        inputProps: { mask: usePhoneMask, inputMode: "numeric" },
                     }}
                     required
-                >
-                    <MenuItem
-                        value={0}
-                        sx={{
-                            display: "none",
-                        }}
-                    />
-                    {estados.map((estado) => (
-                        <MenuItem
-                            key={estado.value}
-                            value={estado.value}
-                            sx={{
-                                width: "100%",
-                            }}
-                        >
-                            {estado.value}
-                        </MenuItem>
-                    ))}
-                </TextFieldLisas>
+                />
             </Box>
             <LocalizationProvider
                 dateAdapter={AdapterDayjs}
@@ -177,60 +147,6 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
                     sx={{ width: "100%" }}
                     required
                 />
-            </Box>
-            <Box sx={{ flexDirection: "row", gap: "3vw", width: "100%" }}>
-                <TextFieldLisas
-                    label="Telefone"
-                    placeholder="Telefone"
-                    name="phone"
-                    value={values.phone}
-                    onChange={handleChange}
-                    sx={{ width: "100%" }}
-                    InputProps={{
-                        inputComponent: MaskedInputNando,
-                        inputProps: { mask: usePhoneMask, inputMode: "numeric" },
-                    }}
-                    required
-                />
-                <TextFieldLisas
-                    select
-                    onChange={handleChange}
-                    label="Pronome"
-                    name="pronoun"
-                    sx={{
-                        width: "100%",
-                    }}
-                    value={values.pronoun}
-                    InputProps={{
-                        sx: {
-                            ...textField,
-                        },
-                    }}
-                    SelectProps={{
-                        MenuProps: {
-                            MenuListProps: { sx: { width: "100%", maxHeight: "80vw", overflowY: "auto" } },
-                        },
-                    }}
-                    required
-                >
-                    <MenuItem
-                        value={0}
-                        sx={{
-                            display: "none",
-                        }}
-                    />
-                    {pronoun.map((pronoun) => (
-                        <MenuItem
-                            key={pronoun.value}
-                            value={pronoun.value}
-                            sx={{
-                                width: "100%",
-                            }}
-                        >
-                            {pronoun.value}
-                        </MenuItem>
-                    ))}
-                </TextFieldLisas>
             </Box>
         </Box>
     )

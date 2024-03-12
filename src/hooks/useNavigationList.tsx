@@ -31,12 +31,12 @@ export const useNavigationList = () => {
                 location: "/profile",
                 icon: "",
             },
-            {
-                id: 3,
-                title: "Sair",
-                location: "/logout",
-                icon: "",
-            },
+            // {
+            //     id: 3,
+            //     title: "Sair",
+            //     location: "/logout",
+            //     icon: "",
+            // },
             {
                 id: 8,
                 title: "-",

@@ -3,6 +3,7 @@ import React from "react"
 import { User } from "../types/server/class"
 import { useNavigate } from "react-router-dom"
 import { useSnackbar } from "burgos-snackbar"
+import { useMenuDrawer } from "../hooks/useMenuDrawer"
 
 interface UserContextValue {
     user: User | null
@@ -25,8 +26,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null)
 
     const logout = () => {
-        navigate("/login")
         setUser(null)
+        navigate("/login")
         snackbar({ severity: "info", text: "Desconectado!" })
     }
 

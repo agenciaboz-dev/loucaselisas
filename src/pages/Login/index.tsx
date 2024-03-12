@@ -33,7 +33,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
             console.log({ User: data })
             setUser(data)
             snackbar({ severity: "success", text: "Você está logado!" })
-            navigate(data.admin ? "/admin" : data.student ? "/student" : data.creator ? "/creator" : "/user/home")
+            navigate(data.admin ? "/admin" : data.student ? "/student" : data.creator ? "/creator" : "/home")
         })
 
         return () => {

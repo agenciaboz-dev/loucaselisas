@@ -1,7 +1,7 @@
 import React from "react"
 import { Routes as ReactRoutes, Route } from "react-router-dom"
 import { User } from "../../types/server/class"
-import { PanelCreator } from "./Panel"
+import { Panel } from "../Panel"
 
 interface CreatorProps {
     user: User
@@ -10,8 +10,8 @@ interface CreatorProps {
 export const Creator: React.FC<CreatorProps> = ({ user }) => {
     return (
         <ReactRoutes>
-            <Route index element={<PanelCreator user={user} />} />
-            <Route path="/home" element={<PanelCreator user={user} />} />
+            <Route index element={<Panel user={user} />} />
+            <Route path="/home" element={<Panel user={user} />} />
         </ReactRoutes>
     )
 }

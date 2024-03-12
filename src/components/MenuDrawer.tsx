@@ -19,7 +19,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({}) => {
 
     const navigate = useNavigate()
 
-    const { open, setOpen } = useMenuDrawer()
+    const menu = useMenuDrawer()
     const { user, logout } = useUser()
 
     const iconStyle: SxProps = {
@@ -45,13 +45,13 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({}) => {
     }
 
     const handleClose = () => {
-        setOpen(false)
+        menu.setOpen(false)
     }
 
     return (
         <Drawer
             anchor={"left"}
-            open={open}
+            open={menu.open}
             onClose={handleClose}
             PaperProps={{
                 sx: {
@@ -67,34 +67,48 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({}) => {
             // ModalProps={{ BackdropProps: { sx: backdropStyle } }}
             keepMounted
         >
-            <Box>
-                <Box sx={{ justifyContent: "space-between", width: "100%", padding: "4vw", gap: "5vw" }}>
-                    <IconButton color="default" sx={iconButtonStyle} onClick={handleClose}>
-                        <KeyboardBackspaceIcon sx={iconStyle} />
-                    </IconButton>
-                    <Box sx={{ alignItems: "center", gap: "4vw", flexDirection: "row" }}>
-                        <Avatar sx={{ width: "15vw", height: "15vw", alignSelf: "center" }} />
-                        <Box>
-                            <p style={{ color: colors.primary, fontSize: "1.1rem" }}>@{user?.username}</p>
-                            <p style={{ color: colors.primary, fontSize: "0.8rem" }}>{user?.name}</p>
+            <Box sx={{ height: "100%" }}>
+                <Box sx={{ width: "100%", padding: "2vw", gap: "5vw", height: "100%" }}>
+                    <Box sx={{ width: "100%", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                        <Box sx={{ alignItems: "center", gap: "4vw", flexDirection: "row" }}>
+                            <Avatar sx={{ width: "15vw", height: "15vw", alignSelf: "center" }} />
+                            <Box>
+                                <p style={{ color: colors.primary, fontSize: "1.1rem" }}>@{user?.username}</p>
+                                <p style={{ color: colors.primary, fontSize: "0.8rem" }}>{user?.name}</p>
+                            </Box>
+                        </Box>
+                        <IconButton color="default" sx={iconButtonStyle} onClick={handleClose}>
+                            <KeyboardBackspaceIcon sx={iconStyle} />
+                        </IconButton>
+                    </Box>
+                    <Box sx={{ justifyContent: "space-between", height: "100%" }}>
+                        <Box sx={{ flexDirection: "column", paddingTop: "4vw", alignItems: "flex-start" }}>
+                            {admDrawerItems.map((menu) => (
+                                <MenuItem
+                                    key={menu.location}
+                                    onClick={() => {
+                                        handleClose()
+                                        navigate(menu.location)
+                                    }}
+                                    sx={menuItemStyle}
+                                >
+                                    {menu.icon}
+                                    {menu.title}
+                                </MenuItem>
+                            ))}
                         </Box>
                     </Box>
                 </Box>
                 {/*  */}
-                <Box sx={{ flexDirection: "column", paddingTop: "4vw" }}>
-                    {admDrawerItems.map((menu) => (
-                        <MenuItem
-                            key={menu.location}
-                            onClick={() => {
-                                handleClose()
-                                navigate(menu.location)
-                            }}
-                            sx={menuItemStyle}
-                        >
-                            {menu.icon}
-                            {menu.title}
-                        </MenuItem>
-                    ))}
+                <Box sx={{ alignItems: "flex-start", p: "2vw" }}>
+                    <IconButton
+                        onClick={() => {
+                            logout()
+                            menu.toggle()
+                        }}
+                    >
+                        <LogoutIcon />
+                    </IconButton>
                 </Box>
             </Box>
         </Drawer>

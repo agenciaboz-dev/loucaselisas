@@ -9,15 +9,15 @@ import { Routes } from "./Routes"
 function App() {
     const theme = useMuiTheme()
     return (
-        <MantineProvider>
-            <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+            <MantineProvider>
                 <BrowserRouter>
                     <Providers>
                         <Routes />
                     </Providers>
                 </BrowserRouter>
-            </ThemeProvider>
-        </MantineProvider>
+            </MantineProvider>
+        </ThemeProvider>
     )
 }
 

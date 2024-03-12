@@ -12,7 +12,7 @@ export const textField = {
     "& .MuiOutlinedInput-root": {
         fieldset: {
             borderRadius: "5vw",
-            border: "0.5px solid #ECE6F0",
+            border: "0.5px solid #E8E1ED",
         },
     },
     "& .MuiOutlinedInput-input": {

@@ -5,11 +5,12 @@ import { useNavigationList } from "./hooks/useNavigationList"
 import { BottomNavigation } from "./components/BottomNavigation"
 import { Admin } from "./pages/Admin"
 import { Student } from "./pages/Student"
-import { Creator } from "./pages/Creator"
 import { Home } from "./pages/Home"
 import { Login } from "./pages/Login"
 import { Signup } from "./pages/Signup"
 import { useUser } from "./hooks/useUser"
+import { Creator } from "./pages/Creator"
+import { Profile } from "./pages/Profile"
 
 interface RoutesProps {}
 
@@ -37,6 +38,7 @@ const UserRoutes: React.FC<{ user: User }> = ({ user }) => {
                 ) : (
                     <Route path="/creator/*" element={<Creator user={user} />} />
                 )}
+                <Profile user={user} />
             </ReactRoutes>
         </>
     )

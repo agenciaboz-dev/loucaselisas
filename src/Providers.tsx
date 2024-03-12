@@ -7,6 +7,8 @@ import { MantineProvider } from "@mantine/core"
 import { useMantineTheme } from "./hooks/useMantineTheme"
 import { MenuDrawer } from "./components/MenuDrawer"
 import { UserProvider } from "./contexts/userContext"
+import { ThemeProvider } from "@mui/material"
+import { useMuiTheme } from "./hooks/useMuiTheme"
 
 interface ProvidersProps {
     children: React.ReactNode
@@ -14,23 +16,26 @@ interface ProvidersProps {
 
 export const Providers: React.FC<ProvidersProps> = ({ children }) => {
     const mantine_theme = useMantineTheme()
+    const theme = useMuiTheme()
 
     return (
-        <SnackbarProvider>
-            <ConfirmDialogProvider>
-                <IoProvider>
-                    <UserProvider>
-                        <MenuDrawerProvider>
-                            <HeaderProvider>
-                                <Snackbar />
-                                <ConfirmDialog />
-                                <MenuDrawer />
-                                <MantineProvider theme={mantine_theme}>{children}</MantineProvider>
-                            </HeaderProvider>
-                        </MenuDrawerProvider>
-                    </UserProvider>
-                </IoProvider>
-            </ConfirmDialogProvider>
-        </SnackbarProvider>
+        <ThemeProvider theme={theme}>
+            <SnackbarProvider>
+                <ConfirmDialogProvider>
+                    <IoProvider>
+                        <UserProvider>
+                            <MenuDrawerProvider>
+                                <HeaderProvider>
+                                    <Snackbar />
+                                    <ConfirmDialog />
+                                    <MenuDrawer />
+                                    <MantineProvider theme={mantine_theme}>{children}</MantineProvider>
+                                </HeaderProvider>
+                            </MenuDrawerProvider>
+                        </UserProvider>
+                    </IoProvider>
+                </ConfirmDialogProvider>
+            </SnackbarProvider>
+        </ThemeProvider>
     )
 }

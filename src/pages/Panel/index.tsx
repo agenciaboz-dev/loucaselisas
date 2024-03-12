@@ -1,14 +1,14 @@
 import { Box } from "@mantine/core"
 import React, { useEffect } from "react"
-import { User } from "../../../types/server/class"
-import { useHeader } from "../../../hooks/useHeader"
-import { Header } from "../../../components/Header"
+import { User } from "../../types/server/class"
+import { useHeader } from "../../hooks/useHeader"
+import { Header } from "../../components/Header"
 
-interface PanelCreatorProps {
+interface PanelProps {
     user: User
 }
 
-export const PanelCreator: React.FC<PanelCreatorProps> = ({ user }) => {
+export const Panel: React.FC<PanelProps> = ({ user }) => {
     const header = useHeader()
 
     useEffect(() => {
