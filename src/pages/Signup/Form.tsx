@@ -71,7 +71,7 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
                 sx={{ width: "100%" }}
                 required
             />
-            <Box sx={{ flexDirection: "row", gap: "2vw" }}>
+            <Box sx={{ flexDirection: "row", gap: "2vw", width: "100%" }}>
                 <TextFieldLisas
                     label="CPF"
                     placeholder="CPF"
@@ -157,7 +157,7 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
                 sx={{ width: "100%" }}
                 required
             />
-            <Box sx={{ flexDirection: "row", gap: "2vw" }}>
+            <Box sx={{ flexDirection: "row", gap: "2vw", width: "100%" }}>
                 <TextFieldLisas
                     label="Username"
                     placeholder="Username"
@@ -178,7 +178,7 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
                     required
                 />
             </Box>
-            <Box sx={{ flexDirection: "row", gap: "3vw" }}>
+            <Box sx={{ flexDirection: "row", gap: "3vw", width: "100%" }}>
                 <TextFieldLisas
                     label="Telefone"
                     placeholder="Telefone"

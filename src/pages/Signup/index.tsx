@@ -103,6 +103,12 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                     <ButtonLisas sx={{ fontSize: "3.5vw", width: "50%" }} invert type="submit">
                         Cadastrar
                     </ButtonLisas>
+                    <ButtonLisas
+                        sx={{ fontSize: "3vw", textDecoration: "underline",}}
+                        onClick={() => navigate("/home")}
+                    >
+                        Voltar
+                    </ButtonLisas>
                 </Box>
             </form>
         </Box>
