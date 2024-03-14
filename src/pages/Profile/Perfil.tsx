@@ -18,20 +18,25 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
             <Box sx={{ width: "100%", height: "100%", padding: "3vw" }}>
                 <Box sx={{ width: "100%", height: "100%", padding: "1vw", alignItems: "center" }}>
                     <Box sx={{ width: "100%", height: "45vw", borderRadius: "3vw", bgcolor: colors.terciary }}></Box>
-                    <Avatar src="" sx={{ width: "30vw", height: "30vw", position: "absolute", top: "50vw" }} />
+                    <Avatar src="" sx={{ width: "30vw", height: "30vw", position: "absolute", top: "45vw" }} />
                     <Box sx={{ gap: "8vw" }}>
                         <p
                             style={{
                                 paddingTop: "12vw",
                                 textAlign: "justify",
                                 fontSize: "0.9rem",
+                                overflow: "hidden",
                                 textOverflow: "ellipsis",
-                                whiteSpace: "break-spaces",
+                                display: "-webkit-box",
+                                WebkitLineClamp: 2, // Define o número de linhas
+                                WebkitBoxOrient: "vertical",
+                                maxWidth: "400px",
                             }}
                         >
                             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                            mollit anim id est laborum.{" "}
+                            pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur.
                         </p>
                         <Box
                             sx={{
