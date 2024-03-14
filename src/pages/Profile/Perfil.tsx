@@ -13,11 +13,12 @@ interface PerfilProps {
 
 export const Perfil: React.FC<PerfilProps> = ({ user }) => {
     const navigate = useNavigate()
+
     return (
-        <Box sx={{ width: "100%", flex: 1, flexDirection: "column" }}>
-            <Box sx={{ width: "100%", height: "100%", padding: "3vw" }}>
-                <Box sx={{ width: "100%", height: "100%", padding: "1vw", alignItems: "center" }}>
-                    <Box sx={{ width: "100%", height: "45vw", borderRadius: "3vw", bgcolor: colors.terciary }}></Box>
+        <Box sx={{ width: 1, flex: 1, flexDirection: "column" }}>
+            <Box sx={{ width: 1, height: 1, padding: "3vw" }}>
+                <Box sx={{ width: 1, height: 1, padding: "1vw", alignItems: "center" }}>
+                    <Box sx={{ width: 1, height: "45vw", borderRadius: "3vw", bgcolor: colors.terciary }}></Box>
                     <Avatar src="" sx={{ width: "30vw", height: "30vw", position: "absolute", top: "45vw" }} />
                     <Box sx={{ gap: "8vw" }}>
                         <p
@@ -56,9 +57,9 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                             </ButtonLisas>
                         </Box>
 
-                        <Box sx={{gap:"5vw"}}>
-                            <Box sx={{gap:"1vw"}}>
-                                <p style={{fontSize:"1.3rem", marginBottom:"2vw", fontWeight:"500"}}>Conta</p>
+                        <Box sx={{ gap: "5vw" }}>
+                            <Box sx={{ gap: "1vw" }}>
+                                <p style={{ fontSize: "1.3rem", marginBottom: "2vw", fontWeight: "500" }}>Conta</p>
 
                                 <ButtonLisas
                                     sx={{
@@ -67,7 +68,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                         alignSelf: "flex-start",
                                         justifyContent: "space-between",
                                         width: "100%",
-                                        fontSize:"1.1rem",
+                                        fontSize: "1.1rem",
                                         p: "0",
                                         fontWeight: "400",
                                     }}
@@ -84,7 +85,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                         alignSelf: "flex-start",
                                         justifyContent: "space-between",
                                         width: "100%",
-                                        fontSize:"1.1rem",
+                                        fontSize: "1.1rem",
                                         p: "0",
                                         fontWeight: "400",
                                     }}
@@ -95,8 +96,8 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                 </ButtonLisas>
                             </Box>
 
-                            <Box sx={{gap:"1vw"}}>
-                                <p style={{fontSize:"1.3rem", marginBottom:"2vw", fontWeight:"500"}}>Pagamento</p>
+                            <Box sx={{ gap: "1vw" }}>
+                                <p style={{ fontSize: "1.3rem", marginBottom: "2vw", fontWeight: "500" }}>Pagamento</p>
 
                                 <ButtonLisas
                                     sx={{
@@ -105,7 +106,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                         alignSelf: "flex-start",
                                         justifyContent: "space-between",
                                         width: "100%",
-                                        fontSize:"1.1rem",
+                                        fontSize: "1.1rem",
                                         p: "0",
                                         fontWeight: "400",
                                     }}
@@ -122,7 +123,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                         alignSelf: "flex-start",
                                         justifyContent: "space-between",
                                         width: "100%",
-                                        fontSize:"1.1rem",
+                                        fontSize: "1.1rem",
                                         p: "0",
                                         fontWeight: "400",
                                     }}
@@ -133,7 +134,6 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                 </ButtonLisas>
                             </Box>
                         </Box>
-
                     </Box>
                 </Box>
             </Box>
