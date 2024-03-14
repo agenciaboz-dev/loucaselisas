@@ -61,7 +61,9 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                 <p style={{fontSize:"1.3rem", marginBottom:"2vw", fontWeight:"500"}}>Conta</p>
 
                                 <ButtonLisas
+                                    
                                     sx={{
+                                        border: "1px solid #000",
                                         alignItems: "center",
                                         gap: "2vw",
                                         alignSelf: "flex-start",
@@ -71,7 +73,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                         p: "0",
                                         fontWeight: "400",
                                     }}
-                                    onClick={() => navigate("/account/cards")}
+                                    onClick={() => navigate("/account/subscription")}
                                 >
                                     Gerenciar seu plano
                                     <ArrowRightIcon />
