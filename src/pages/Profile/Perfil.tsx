@@ -15,15 +15,15 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
     const navigate = useNavigate()
 
     return (
-        <Box sx={{ width: 1, flex: 1, flexDirection: "column" }}>
+        <Box sx={{ width: 1, flexDirection: "column", overflowY: "auto" }}>
             <Box sx={{ width: 1, height: 1, padding: "3vw" }}>
                 <Box sx={{ width: 1, height: 1, padding: "1vw", alignItems: "center" }}>
                     <Box sx={{ width: 1, height: "45vw", borderRadius: "3vw", bgcolor: colors.terciary }}></Box>
-                    <Avatar src="" sx={{ width: "30vw", height: "30vw", position: "absolute", top: "45vw" }} />
+                    <Avatar src="" sx={{ width: "30vw", height: "30vw", position: "absolute", top: "35vw" }} />
                     <Box sx={{ gap: "8vw" }}>
                         <p
                             style={{
-                                paddingTop: "12vw",
+                                paddingTop: "14vw",
                                 textAlign: "justify",
                                 fontSize: "0.9rem",
                                 overflow: "hidden",
@@ -59,18 +59,16 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
 
                         <Box sx={{ gap: "5vw" }}>
                             <Box sx={{ gap: "1vw" }}>
-                                <p style={{ fontSize: "1.3rem", marginBottom: "2vw", fontWeight: "500" }}>Conta</p>
+                                <p style={{ fontSize: "1.2rem", marginBottom: "2vw", fontWeight: "500" }}>Conta</p>
 
                                 <ButtonLisas
-                                    
                                     sx={{
-                                        border: "1px solid #000",
                                         alignItems: "center",
                                         gap: "2vw",
                                         alignSelf: "flex-start",
                                         justifyContent: "space-between",
                                         width: "100%",
-                                        fontSize: "1.1rem",
+                                        fontSize: "1rem",
                                         p: "0",
                                         fontWeight: "400",
                                     }}
@@ -87,7 +85,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                         alignSelf: "flex-start",
                                         justifyContent: "space-between",
                                         width: "100%",
-                                        fontSize: "1.1rem",
+                                        fontSize: "1rem",
                                         p: "0",
                                         fontWeight: "400",
                                     }}
@@ -99,7 +97,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                             </Box>
 
                             <Box sx={{ gap: "1vw" }}>
-                                <p style={{ fontSize: "1.3rem", marginBottom: "2vw", fontWeight: "500" }}>Pagamento</p>
+                                <p style={{ fontSize: "1.2rem", marginBottom: "2vw", fontWeight: "500" }}>Pagamento</p>
 
                                 <ButtonLisas
                                     sx={{
@@ -108,7 +106,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                         alignSelf: "flex-start",
                                         justifyContent: "space-between",
                                         width: "100%",
-                                        fontSize: "1.1rem",
+                                        fontSize: "1rem",
                                         p: "0",
                                         fontWeight: "400",
                                     }}
@@ -125,7 +123,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                         alignSelf: "flex-start",
                                         justifyContent: "space-between",
                                         width: "100%",
-                                        fontSize: "1.1rem",
+                                        fontSize: "1rem",
                                         p: "0",
                                         fontWeight: "400",
                                     }}

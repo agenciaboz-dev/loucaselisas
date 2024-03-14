@@ -13,6 +13,7 @@ import { Creator } from "./pages/Creator"
 import { Profile } from "./pages/Profile"
 import { useHeader } from "./hooks/useHeader"
 import { Header } from "./components/Header"
+import { Box } from "@mui/material"
 
 interface RoutesProps {}
 
@@ -25,14 +26,14 @@ const AdminRoutes: React.FC<{ user: User }> = ({ user }) => {
     }, [])
 
     return (
-        <>
+        <Box sx={{ flexDirection: "column", height: 1, width: 1, overflow: "hidden", flex: 1 }}>
             <Header />
             <ReactRoutes>
                 <Route path="/admin/*" element={<Admin user={user} />} />
                 <Route path="/account/*" element={<Profile user={user} />} />
             </ReactRoutes>
             <BottomNavigation section={bottomMenu.admin} />
-        </>
+        </Box>
     )
 }
 
