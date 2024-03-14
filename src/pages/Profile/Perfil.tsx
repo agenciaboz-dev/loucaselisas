@@ -1,11 +1,13 @@
-import { Avatar, Box } from "@mui/material"
-import React from "react"
+import { Box, Avatar as Image } from "@mui/material"
+import React, { useState } from "react"
 import { colors } from "../../styles/colors"
 import { User } from "../../types/server/class"
 import { ButtonLisas } from "../../components/ButtonLisas"
 import { CiCreditCard2 } from "react-icons/ci"
 import { ArrowLeftIcon, ArrowRightIcon } from "@mui/x-date-pickers"
 import { Navigate, useNavigate } from "react-router-dom"
+import { Avatar } from "@files-ui/react"
+import logo from "../../assets/Logo/logo.webp"
 
 interface PerfilProps {
     user: User
@@ -13,32 +15,41 @@ interface PerfilProps {
 
 export const Perfil: React.FC<PerfilProps> = ({ user }) => {
     const navigate = useNavigate()
+    const [image, setImage] = useState("")
 
     return (
         <Box sx={{ width: 1, flexDirection: "column", overflowY: "auto" }}>
-            <Box sx={{ width: 1, height: 1, padding: "3vw" }}>
-                <Box sx={{ width: 1, height: 1, padding: "1vw", alignItems: "center" }}>
-                    <Box sx={{ width: 1, height: "45vw", borderRadius: "3vw", bgcolor: colors.terciary }}></Box>
-                    <Avatar src="" sx={{ width: "30vw", height: "30vw", position: "absolute", top: "35vw" }} />
-                    <Box sx={{ gap: "8vw" }}>
-                        <p
-                            style={{
-                                paddingTop: "14vw",
-                                textAlign: "justify",
-                                fontSize: "0.9rem",
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                                display: "-webkit-box",
-                                WebkitLineClamp: 2, // Define o número de linhas
-                                WebkitBoxOrient: "vertical",
-                                maxWidth: "400px",
-                            }}
-                        >
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                            nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur.
-                        </p>
+            <Box sx={{ width: 1, height: 0.9, padding: "3vw" }}>
+                <Box sx={{ width: 1, padding: "1vw", alignItems: "center" }}>
+                    <Box sx={{ width: 1, height: "35vw", borderRadius: "3vw", bgcolor: colors.terciary }}></Box>
+                    <Image
+                        src={image}
+                        variant="circular"
+                        sx={{ width: "30vw", height: "30vw", position: "relative", bottom: "20vw" }}
+                    />
+
+                    <Box sx={{ gap: "6vw", position: "relative", bottom: "18vw" }}>
+                        <Box sx={{ alignItems: "center", gap: "2vw" }}>
+                            <p style={{ fontSize: "1.5rem" }}>@{user.username}</p>
+                            <p
+                                style={{
+                                    // paddingTop: "14vw",
+                                    textAlign: "justify",
+                                    fontSize: "0.9rem",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                    display: "-webkit-box",
+                                    WebkitLineClamp: 2, // Define o número de linhas
+                                    WebkitBoxOrient: "vertical",
+                                    maxWidth: "400px",
+                                }}
+                            >
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                dolore eu fugiat nulla pariatur.
+                            </p>
+                        </Box>
                         <Box
                             sx={{
                                 border: "1px solid black",
