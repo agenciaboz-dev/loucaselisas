@@ -1,57 +1,37 @@
 import { createTheme } from "@mui/material"
-
-const colors = {
-    primary: "#111012",
-    secondary: "#585858",
-
-    success: "#34A853",
-
-    warning: "#ffb74d",
-
-    background: {
-        default: "#fff",
-        paper: "#fff",
-    },
-
-    text: {
-        primary: "#1F1F1F",
-        secondary: "#1F1F1F",
-        terciary: "#585858",
-    },
-}
-
+import { colors } from "../styles/colors"
+import { deDE } from "@mui/x-date-pickers/locales"
 export const useMuiTheme = () => {
-    const THEME = createTheme({
-        typography: {
-            fontFamily: ["Montserrat", "Futura Medium BT"].join(","),
-        },
-        palette: {
-            primary: {
-                main: colors.primary,
+    const THEME = createTheme(
+        {
+            typography: {
+                fontFamily: [""].join(","),
+                fontSize: 14,
+                fontWeightLight: 300,
+                fontWeightRegular: 400,
+                fontWeightMedium: 500,
+                fontWeightBold: 600,
             },
-            secondary: {
-                main: colors.secondary,
-            },
+            palette: {
+                // mode: 'dark',
 
-            background: {
-                default: colors.background.default,
-                paper: colors.background.paper,
-            },
+                primary: {
+                    main: colors.primary,
+                },
+                secondary: {
+                    main: colors.secondary,
+                },
 
-            text: {
-                primary: colors.text.primary,
-                secondary: colors.text.secondary,
-            },
-
-            success: {
-                main: colors.success,
-            },
-
-            warning: {
-                main: colors.warning,
+                text: {
+                    primary: colors.primary,
+                    secondary: colors.secondary,
+                    // disabled: colors.primary,
+                },
+                error: { main: "#B3261E" },
             },
         },
-    })
+        deDE
+    )
 
     return THEME
 }
