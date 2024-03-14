@@ -7,7 +7,7 @@ export const textField = {
         // Removendo a propriedade border
     },
     "& .MuiInputLabel-root ": {
-        color: "#ECE6F0",
+        color: colors.primary,
     },
     "& .MuiOutlinedInput-root": {
         fieldset: {
