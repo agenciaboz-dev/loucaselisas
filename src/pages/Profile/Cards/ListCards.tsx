@@ -5,7 +5,7 @@ import { ButtonLisas } from "../../../components/ButtonLisas"
 import { useNavigate } from "react-router-dom"
 import { ArrowLeftIcon } from "@mui/x-date-pickers"
 import { colors } from "../../../styles/colors"
-import { Card } from "./Card"
+import { Card } from "../../../components/Card"
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 

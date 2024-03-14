@@ -51,20 +51,84 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                             </ButtonLisas>
                         </Box>
 
-                        <ButtonLisas
-                            sx={{
-                                alignItems: "center",
-                                gap: "2vw",
-                                alignSelf: "flex-start",
-                                justifyContent: "space-between",
-                                width: "100%",
-                                fontSize: "0.9rem",
-                            }}
-                            onClick={() => navigate("/account/cards")}
-                        >
-                            Cartões de pagamentos salvos
-                            <ArrowRightIcon />
-                        </ButtonLisas>
+                        <Box sx={{gap:"5vw"}}>
+                            <Box sx={{gap:"1vw"}}>
+                                <p style={{fontSize:"1.3rem", marginBottom:"2vw", fontWeight:"500"}}>Conta</p>
+
+                                <ButtonLisas
+                                    sx={{
+                                        alignItems: "center",
+                                        gap: "2vw",
+                                        alignSelf: "flex-start",
+                                        justifyContent: "space-between",
+                                        width: "100%",
+                                        fontSize:"1.1rem",
+                                        p: "0",
+                                        fontWeight: "400",
+                                    }}
+                                    onClick={() => navigate("/account/cards")}
+                                >
+                                    Gerenciar seu plano
+                                    <ArrowRightIcon />
+                                </ButtonLisas>
+
+                                <ButtonLisas
+                                    sx={{
+                                        alignItems: "center",
+                                        gap: "2vw",
+                                        alignSelf: "flex-start",
+                                        justifyContent: "space-between",
+                                        width: "100%",
+                                        fontSize:"1.1rem",
+                                        p: "0",
+                                        fontWeight: "400",
+                                    }}
+                                    onClick={() => navigate("/account/cards")}
+                                >
+                                    Histórico do pedido
+                                    <ArrowRightIcon />
+                                </ButtonLisas>
+                            </Box>
+
+                            <Box sx={{gap:"1vw"}}>
+                                <p style={{fontSize:"1.3rem", marginBottom:"2vw", fontWeight:"500"}}>Pagamento</p>
+
+                                <ButtonLisas
+                                    sx={{
+                                        alignItems: "center",
+                                        gap: "2vw",
+                                        alignSelf: "flex-start",
+                                        justifyContent: "space-between",
+                                        width: "100%",
+                                        fontSize:"1.1rem",
+                                        p: "0",
+                                        fontWeight: "400",
+                                    }}
+                                    onClick={() => navigate("/account/cards")}
+                                >
+                                    Histórico do pedido
+                                    <ArrowRightIcon />
+                                </ButtonLisas>
+
+                                <ButtonLisas
+                                    sx={{
+                                        alignItems: "center",
+                                        gap: "2vw",
+                                        alignSelf: "flex-start",
+                                        justifyContent: "space-between",
+                                        width: "100%",
+                                        fontSize:"1.1rem",
+                                        p: "0",
+                                        fontWeight: "400",
+                                    }}
+                                    onClick={() => navigate("/account/cards")}
+                                >
+                                    Cartões de pagamentos salvos
+                                    <ArrowRightIcon />
+                                </ButtonLisas>
+                            </Box>
+                        </Box>
+
                     </Box>
                 </Box>
             </Box>
