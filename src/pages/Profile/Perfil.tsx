@@ -19,9 +19,9 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
 
     return (
         <Box sx={{ width: 1, flexDirection: "column", overflowY: "auto" }}>
-            <Box sx={{ width: 1, height: 1, padding: "3vw", overflowY: "auto" }}>
+            <Box sx={{ width: 1, height: 0.9, padding: "3vw" }}>
                 <Box sx={{ width: 1, padding: "1vw", alignItems: "center" }}>
-                    <Box sx={{ width: 1, height: "40vw", borderRadius: "3vw", bgcolor: colors.terciary }}></Box>
+                    <Box sx={{ width: 1, height: "35vw", borderRadius: "3vw", bgcolor: colors.terciary }}></Box>
                     <Image
                         src={image}
                         variant="circular"
