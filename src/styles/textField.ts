@@ -7,12 +7,12 @@ export const textField = {
         // Removendo a propriedade border
     },
     "& .MuiInputLabel-root ": {
-        color: "#ECE6F0",
+        color: colors.primary,
     },
     "& .MuiOutlinedInput-root": {
         fieldset: {
             borderRadius: "5vw",
-            border: "0.5px solid #E8E1ED",
+            border: "0.5px solid #000",
         },
     },
     "& .MuiOutlinedInput-input": {

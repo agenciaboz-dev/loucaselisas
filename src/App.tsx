@@ -5,6 +5,7 @@ import { ThemeProvider } from "@emotion/react"
 import { BrowserRouter } from "react-router-dom"
 import { Providers } from "./Providers"
 import { Routes } from "./Routes"
+import { Box } from "@mui/material"
 
 function App() {
     const theme = useMuiTheme()
@@ -13,7 +14,9 @@ function App() {
             <MantineProvider>
                 <BrowserRouter>
                     <Providers>
-                        <Routes />
+                        <Box sx={{ height: 1 }}>
+                            <Routes />
+                        </Box>
                     </Providers>
                 </BrowserRouter>
             </MantineProvider>

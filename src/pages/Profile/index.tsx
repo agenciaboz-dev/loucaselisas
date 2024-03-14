@@ -1,22 +1,24 @@
-import React, { useEffect } from "react"
-import { useHeader } from "../../hooks/useHeader"
+import React from "react"
+import { Routes as ReactRoutes, Route } from "react-router-dom"
+import { Perfil } from "./Perfil"
 import { User } from "../../types/server/class"
-import { Box } from "@mui/material"
-import { Header } from "../../components/Header"
+import { ListCards } from "./Cards/ListCards"
+import { AddCard } from "./Cards/AddCard"
+import { Subscription} from "./Subscription"
 
 interface ProfileProps {
     user: User
 }
 
 export const Profile: React.FC<ProfileProps> = ({ user }) => {
-    const header = useHeader()
-
-    useEffect(() => {
-        header.setTitle(user.name)
-    }, [])
     return (
-        <Box>
-            <Header />
-        </Box>
+        <ReactRoutes>
+            <Route index element={<Perfil user={user} />} />
+            <Route path="/" element={<Perfil user={user} />} />
+            <Route path="/cards" element={<ListCards user={user} />} />
+            <Route path="/add-card" element={<AddCard  user={user} />} />
+            <Route path="/subscription" element={<Subscription   />} />
+           
+        </ReactRoutes>
     )
 }

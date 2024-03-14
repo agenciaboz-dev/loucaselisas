@@ -38,10 +38,17 @@ export const Header: React.FC<HeaderProps> = ({ back, location, style }) => {
                 fontWeight: "bold",
                 background: "transparent",
                 borderRadius: 0,
-                position: "fixed",
             }}
         >
-            <Box style={{ flexDirection: "row", gap: "4vw", alignItems: "center" }}>
+            <Box
+                style={{
+                    width: "100%",
+                    flexDirection: "row",
+                    gap: "4vw",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                }}
+            >
                 {back ? (
                     <IconButton sx={{ bgcolor: "#D9D9D9" }} onClick={() => navigate(location ? location : "/")}>
                         <PiArrowLeftThin />
@@ -55,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({ back, location, style }) => {
                         }}
                     />
                 )}
-                <TextFieldLisas value={user?.name} InputProps={{ readOnly: true }} disabled />
+                <p style={{ fontWeight: "400", fontSize: "1.2rem", width: "100%" }}>{user?.name}</p>
                 <IconButton sx={{ bgcolor: "#D9D9D9" }}>
                     <CiBellOn />
                 </IconButton>
