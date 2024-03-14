@@ -18,7 +18,7 @@ export const Card: React.FC<ListCardsProps> = ({ user }) => {
 export const Card = () => {
   return (
     <Box sx={{
-        border: "1px solid black",
+      boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
         width: "100%",
         height: "fit-content",
         p: "4vw",

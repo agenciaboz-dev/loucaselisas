@@ -9,6 +9,7 @@ import { useFormik } from 'formik';
 import { TextFieldLisas } from '../../../components/TextFieldLisas'
 import MaskedInputNando from '../../../components/MaskedNando'
 import { useCardNumberMask } from 'burgos-masks'
+import MaskedInput from '../../../components/MaskedInput'
 
 interface AddCardProps {
     user: User
@@ -85,7 +86,7 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
 
                         <Box sx={{flexDirection:"row", gap: "4vw"}}>
                             <TextFieldLisas 
-                                InputProps={{inputComponent:MaskedInputNando, inputProps:{mask: mask}, inputMode: "numeric"}}
+                                InputProps={{inputComponent:MaskedInput, inputProps:{mask: "00/00"}, inputMode: "numeric"}}
                                 name='validateDate' 
                                 label='Validade' 
                                 placeholder='00/00'
@@ -95,6 +96,7 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
                             />
 
                             <TextFieldLisas 
+                                InputProps={{inputComponent:MaskedInput, inputProps:{mask: "000"}, inputMode: "numeric"}}
                                 name='cvc' 
                                 label='CVC' 
                                 placeholder='000'

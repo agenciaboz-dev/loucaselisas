@@ -22,8 +22,8 @@ export const ListCards: React.FC<ListCardsProps> = ({ user }) => {
 
 
     return (
-        <Box sx={{width: "100%", flex: 1, flexDirection: "column", p:"4vw" ,bgcolor: colors.delete }}>
-            <Box sx={{width:"100%", flex: 1, alignItems:"center", bgcolor: colors.terciary, gap:"3vw"}}>
+        <Box sx={{width: "100%", flex: 1, flexDirection: "column", p:"4vw"}}>
+            <Box sx={{width:"100%", flex: 1, alignItems:"center", gap:"3vw"}}>
                 <ButtonLisas
                     sx={{
                         alignItems: "center",
