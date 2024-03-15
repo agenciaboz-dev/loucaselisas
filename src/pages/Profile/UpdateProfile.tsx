@@ -32,9 +32,9 @@ export const UpdateProfile:React.FC<UpdateProfileProps> = ({ user }) => {
                 <ArrowLeftIcon />
                 <p style={{ fontSize: "1.1rem"}}>Editar perfil</p>    
             </ButtonLisas> 
-            <Box sx={{}}>
+            <Box sx={{gap: "3vw"}}>
                 <ImageUpdate/>
-                
+                <FormUpdateProfile/>
             </Box>
             
             
