@@ -26,6 +26,15 @@ export const textField = {
     },
 }
 
+
+/*
+export const selectInput = {
+    ".MuiInputLabel-root.Mui-focused": {
+        color: colors.primary,
+    }
+}
+*/
+
 // export const input: SxProps = {
 //     "& .MuiInputBase-root": { color: "#fff", bgcolor: "#fff1" },
 //     "& .MuiInputLabel-root.Mui-focused ": {
