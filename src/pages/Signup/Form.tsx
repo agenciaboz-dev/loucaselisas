@@ -5,7 +5,7 @@ import { LocalizationProvider, MobileDatePicker, ptBR } from "@mui/x-date-picker
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo"
 import dayjs from "dayjs"
-
+import { FiAtSign } from "react-icons/fi"
 import { textField } from "../../styles/textField"
 
 import MaskedInputNando from "../../components/MaskedNando"
@@ -77,6 +77,7 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
                     onChange={handleChange}
                     sx={{ width: "100%" }}
                     InputProps={{
+                        //@ts-ignore
                         inputComponent: MaskedInputNando,
                         inputProps: { mask: useCpfMask, inputMode: "numeric" },
                     }}
@@ -91,6 +92,7 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
                     onChange={handleChange}
                     sx={{ width: "100%" }}
                     InputProps={{
+                        //@ts-ignore
                         inputComponent: MaskedInputNando,
                         inputProps: { mask: usePhoneMask, inputMode: "numeric" },
                     }}
@@ -148,6 +150,34 @@ export const Form: React.FC<FormProps> = ({ values, handleChange, pickDate, setP
                     required
                 />
             </Box>
+            <Box sx={{ flexDirection: "row", gap: "2vw", width: "100%" }}>
+                <TextFieldLisas
+                    label="Instagram"
+                    placeholder="nomedeusuario"
+                    name="instagram"
+                    value={values.instagram}
+                    onChange={handleChange}
+                    sx={{ width: "100%" }}
+                    InputProps={{ startAdornment: <FiAtSign /> }}
+                />
+                <TextFieldLisas
+                    label="Tiktok"
+                    placeholder="nomeusuario"
+                    name="tiktok"
+                    value={values.tiktok}
+                    onChange={handleChange}
+                    sx={{ width: "100%" }}
+                    InputProps={{ startAdornment: <FiAtSign /> }}
+                />
+            </Box>
+            <TextFieldLisas
+                label="Profissão"
+                placeholder="Profissão"
+                name="profession"
+                value={values.profession}
+                onChange={handleChange}
+                sx={{ width: "100%" }}
+            />
         </Box>
     )
 }
