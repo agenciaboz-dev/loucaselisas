@@ -60,6 +60,9 @@ export declare class User {
     pronoun: string;
     uf: string;
     admin: boolean;
+    instagram: string | null;
+    tiktok: string | null;
+    profession: string | null;
     image: string | null;
     cover: string | null;
     bio: string | null;

@@ -47,6 +47,9 @@ export const Signup: React.FC<SignupProps> = ({}) => {
             pronoun: "",
             uf: "",
             bio: "",
+            instagram: "",
+            tiktok: "",
+            profession: "",
             student: true,
             cover: null,
             creator: null,
@@ -87,7 +90,7 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                 bgcolor: colors.secondary,
                 justifyContent: "center",
                 alignItems: "center",
-                gap: "10vw",
+                gap: "5vw",
                 padding: "2vw",
                 overflowY: "auto",
             }}

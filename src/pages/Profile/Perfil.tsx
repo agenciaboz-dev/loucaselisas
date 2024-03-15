@@ -7,7 +7,8 @@ import { CiCreditCard2 } from "react-icons/ci"
 import { ArrowLeftIcon, ArrowRightIcon } from "@mui/x-date-pickers"
 import { Navigate, useNavigate } from "react-router-dom"
 import { Avatar } from "@files-ui/react"
-import logo from "../../assets/Logo/logo.webp"
+import profile from "../../assets/pessoa.jpeg"
+import cover from "../../assets/cover.jpg"
 
 interface PerfilProps {
     user: User
@@ -21,9 +22,12 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
         <Box sx={{ width: 1, flexDirection: "column", overflowY: "auto" }}>
             <Box sx={{ width: 1, height: 0.9, padding: "3vw" }}>
                 <Box sx={{ width: 1, padding: "1vw", alignItems: "center" }}>
-                    <Box sx={{ width: 1, height: "35vw", borderRadius: "3vw", bgcolor: colors.terciary }}></Box>
                     <Image
-                        src={image}
+                        src={cover}
+                        sx={{ width: 1, height: "35vw", borderRadius: "3vw", bgcolor: colors.terciary }}
+                    ></Image>
+                    <Image
+                        src={profile}
                         variant="circular"
                         sx={{ width: "30vw", height: "30vw", position: "relative", bottom: "20vw" }}
                     />

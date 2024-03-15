@@ -18,4 +18,6 @@ export declare class Role {
     constructor(data: RolePrisma);
     static existsDefault(): Promise<boolean>;
     static createDefault(socket: Socket): Promise<void>;
+    load(data: RolePrisma): void;
+    update(data: Partial<Role>): Promise<void>;
 }
