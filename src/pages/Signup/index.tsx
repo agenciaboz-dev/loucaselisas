@@ -72,9 +72,9 @@ export const Signup: React.FC<SignupProps> = ({}) => {
     useEffect(() => {
         io.on("user:signup", (data: User) => {
             console.log({ User: data })
-            setUser(data)
-            snackbar({ severity: "success", text: "Você está logado!" })
-            navigate(data.admin ? "/admin" : data.student ? "/student" : data.creator ? "/creator" : "/home")
+            // setUser(data)
+            snackbar({ severity: "success", text: "Cadastro realizado com sucesso!" })
+            navigate(data.admin ? "/admin" : data.creator ? "/creator" : "/login")
         })
 
         return () => {
