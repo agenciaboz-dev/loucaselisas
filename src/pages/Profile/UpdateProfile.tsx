@@ -4,6 +4,8 @@ import { User } from '../../types/server/class'
 import { useNavigate } from 'react-router-dom'
 import { ButtonLisas } from '../../components/ButtonLisas'
 import { ArrowLeftIcon } from '@mui/x-date-pickers'
+import { ImageUpdate } from './Update/ImageUpdate'
+import { FormUpdateProfile } from './Update/FormUpdateProfile'
 
 interface UpdateProfileProps {
     user: User
@@ -30,6 +32,11 @@ export const UpdateProfile:React.FC<UpdateProfileProps> = ({ user }) => {
                 <ArrowLeftIcon />
                 <p style={{ fontSize: "1.1rem"}}>Editar perfil</p>    
             </ButtonLisas> 
+            <Box sx={{}}>
+                <ImageUpdate/>
+                <FormUpdateProfile/>
+            </Box>
+            
             
         </Box>
       </Box> 
