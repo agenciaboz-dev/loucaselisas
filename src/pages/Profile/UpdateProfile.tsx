@@ -34,10 +34,8 @@ export const UpdateProfile:React.FC<UpdateProfileProps> = ({ user }) => {
             </ButtonLisas> 
             <Box sx={{gap: "3vw"}}>
                 <ImageUpdate/>
-                <FormUpdateProfile/>
-            </Box>
-            
-            
+                <FormUpdateProfile user={user}/>
+            </Box>            
         </Box>
       </Box> 
     )

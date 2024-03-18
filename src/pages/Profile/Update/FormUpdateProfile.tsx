@@ -1,10 +1,14 @@
 import { Box, MenuItem, Select } from '@mui/material'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { useFormik } from 'formik'
 import { TextFieldLisas } from '../../../components/TextFieldLisas'
 import { ButtonLisas,  } from '../../../components/ButtonLisas'
 import { useEstadosBrasil } from '../../../hooks/useEstadosBrasil'
 import { User, UserForm } from '../../../types/server/class'
+import { useIo } from '../../../hooks/useIo'
+import { useUser } from '../../../hooks/useUser'
+import { useSnackbar } from 'burgos-snackbar'
+import { useNavigate } from 'react-router-dom'
 
 interface FormUpdateProfileProps {
     user:User
@@ -13,6 +17,12 @@ interface FormUpdateProfileProps {
 export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
 
     const estados = useEstadosBrasil()
+    const [loading, setLoading] = useState(false)
+    const io = useIo()
+    const {setUser} = useUser()
+    const { snackbar } = useSnackbar()
+    const navigate = useNavigate()
+
 
     const formik = useFormik<UserForm>({
         initialValues: {
@@ -24,10 +34,43 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
                 },
 
         onSubmit : values => {
-            console.log(values);
+            if (loading) return
+            console.log (values)
+            setLoading(true)
+            const data: Partial<UserForm> & {id:string} = {
+                id: user.id,
+                username: values.username, 
+                email: values.email,
+                password: values.password,
+                pronoun: values.pronoun,
+                birth: values.birth,
+                uf: values.uf,
+                phone: values.phone,
+                profession: values.profession,
+                instagram: values.instagram,
+                tiktok: values.tiktok   
+            }
+            io.emit("user:update", data)
         }
 
     });
+
+    useEffect(()=>{
+        io.on('user:update', (user:User)=>{
+            setLoading(false)
+            setUser(user)
+            snackbar({severity:"success", text:"Usuário atualizado com sucesso"})
+            navigate ("/account")
+        })
+        io.on( "user:update:error", (error:string)=> {
+            setLoading(false)
+            snackbar({severity:"error", text:error})
+        })
+        return ()=> {
+            io.off("user:update")
+            io.off("user:update:error")
+        } 
+    }, [])
 
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -67,8 +110,8 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
                             borderRadius: "5vw"
                         }} 
                     >
-                        <MenuItem value={"Sr."}>masculino</MenuItem>
-                        <MenuItem value={"Sra."}>feminino</MenuItem>
+                        <MenuItem value={"mr"}>Sr.</MenuItem>
+                        <MenuItem value={"mrs"}>Sra.</MenuItem>
                     </Select>
                     <TextFieldLisas 
                         name='birth' 
@@ -80,7 +123,8 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
                     />
                 </Box>
                 <TextFieldLisas 
-                    name='value' 
+                select
+                    name='uf' 
                     label='Estado' 
                     placeholder='UF'
                     value={formik.values.uf} 
@@ -106,7 +150,7 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
                         name='profession' 
                         label='Profissões' 
                         placeholder='Profissão'
-                        value={formik.values.profession} 
+                        value={formik.values.profession || ""} 
                         onChange={formik.handleChange} 
                         sx={{flex: 1}}
                     />
@@ -116,14 +160,14 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
                         name='instagram' 
                         label='Instagram' 
                         placeholder='Instagram'
-                        value={formik.values.instagram} 
+                        value={formik.values.instagram || ""} 
                         onChange={formik.handleChange} 
                     />
                     <TextFieldLisas 
                         name='tikTok' 
                         label='Tik Tok' 
                         placeholder='Tik Tok'
-                        value={formik.values.tiktok} 
+                        value={formik.values.tiktok || ""} 
                         onChange={formik.handleChange} 
                     />
                 </Box>

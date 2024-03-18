@@ -4,7 +4,6 @@ import { ButtonLisas } from "../../../components/ButtonLisas"
 import { useNavigate } from "react-router-dom"
 import { Box, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { ArrowLeftIcon } from "@mui/x-date-pickers"
-import { colors } from '../../../styles/colors'
 import { useFormik } from 'formik';
 import { TextFieldLisas } from '../../../components/TextFieldLisas'
 import MaskedInputNando from '../../../components/MaskedNando'
@@ -27,6 +26,7 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
     const [loading, setLoading] = useState(false)
     const {setUser} = useUser()
     const { snackbar } = useSnackbar()
+    
 
     const formik = useFormik<PaymentCardForm>({
 
@@ -55,7 +55,7 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
         io.on( "user:update", (user:User)=>{
             setLoading(false)
             setUser(user)
-            snackbar({severity:"success", text:"Usuário atualizado com sucesso"})
+            snackbar({severity:"success", text:"Cartão cadastrado com sucesso"})
             navigate("/account/cards")
         })
         io.on( "user:update:error", (error:string)=> {
