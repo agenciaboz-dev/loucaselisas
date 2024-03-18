@@ -41,13 +41,10 @@ export const ListCards: React.FC<ListCardsProps> = ({ user }) => {
                 <Card></Card>
                 <ButtonLisas
                     sx={{
-                        alignItems: "center",
                         gap: "2vw",
-                        height:"fit-content",                                          
-                        width: "auto",
                         fontSize: "0.9rem",
-                        border: "1px solid black",
                     }}
+                    variant="outlined"
                     onClick={() => navigate("/account/add-card")}
                 >
                     <AddCircleOutlineIcon/>

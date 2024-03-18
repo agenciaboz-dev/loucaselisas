@@ -1,8 +1,8 @@
-import React from 'react'
-import { User } from "../../../types/server/class"
+import React, { useEffect, useState } from 'react'
+import { User, UserForm } from "../../../types/server/class"
 import { ButtonLisas } from "../../../components/ButtonLisas"
 import { useNavigate } from "react-router-dom"
-import { Box } from '@mui/material'
+import { Box, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { ArrowLeftIcon } from "@mui/x-date-pickers"
 import { colors } from '../../../styles/colors'
 import { useFormik } from 'formik';
@@ -10,6 +10,10 @@ import { TextFieldLisas } from '../../../components/TextFieldLisas'
 import MaskedInputNando from '../../../components/MaskedNando'
 import { useCardNumberMask } from 'burgos-masks'
 import MaskedInput from '../../../components/MaskedInput'
+import { PaymentCardForm } from '../../../types/server/class/PaymentCard'
+import { useIo } from '../../../hooks/useIo'
+import { useUser } from '../../../hooks/useUser'
+import { useSnackbar } from 'burgos-snackbar'
 
 interface AddCardProps {
     user: User
@@ -19,24 +23,50 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
 
     const navigate = useNavigate();
     const mask= useCardNumberMask();
+    const io = useIo()
+    const [loading, setLoading] = useState(false)
+    const {setUser} = useUser()
+    const { snackbar } = useSnackbar()
 
-    const formik = useFormik({
+    const formik = useFormik<PaymentCardForm>({
 
         initialValues: {
-    
-          cardName: '',
-          cardNumber: '',
-          validateDate: '',
-          cvc: ''
+            cvc: "",
+            number: "",
+            owner: "",
+            type: "credit", 
+            validity: "",
         },
     
         onSubmit: values => {
-    
+            if(loading) return
           console.log(values);
-    
+            setLoading(true)
+            const data: Partial<UserForm> & { id: string } = {
+                id: user.id, 
+                payment_cards: [...user.payment_cards, values]
+            }
+            io.emit("user:update", data)
         },
     
       });
+
+      useEffect(()=>{
+        io.on( "user:update", (user:User)=>{
+            setLoading(false)
+            setUser(user)
+            snackbar({severity:"success", text:"Usuário atualizado com sucesso"})
+            navigate("/account/cards")
+        })
+        io.on( "user:update:error", (error:string)=> {
+            setLoading(false)
+            snackbar({severity:"error", text:error})
+        })
+        return ()=> {
+            io.off("user:update")
+            io.off("user:update:error")
+        } 
+      }, [])
 
     return (
 
@@ -68,29 +98,29 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
                     }}>
     
                         <TextFieldLisas 
-                            name='cardName' 
+                            name='owner' 
                             label='Nome no cartão' 
                             placeholder='Nome no cartão'
-                            value={formik.values.cardName} 
+                            value={formik.values.owner} 
                             onChange={formik.handleChange} 
                         />
 
                         <TextFieldLisas 
                             InputProps={{inputComponent:MaskedInputNando, inputProps:{mask: mask}, inputMode: "numeric"}}
-                            name='cardNumber' 
+                            name='number' 
                             label='Número do cartão' 
                             placeholder='0000 0000 0000 0000'
-                            value={formik.values.cardNumber} 
+                            value={formik.values.number} 
                             onChange={formik.handleChange} 
                         />
 
                         <Box sx={{flexDirection:"row", gap: "4vw"}}>
                             <TextFieldLisas 
                                 InputProps={{inputComponent:MaskedInput, inputProps:{mask: "00/00"}, inputMode: "numeric"}}
-                                name='validateDate' 
+                                name='validity' 
                                 label='Validade' 
                                 placeholder='00/00'
-                                value={formik.values.validateDate} 
+                                value={formik.values.validity} 
                                 onChange={formik.handleChange} 
                                 sx={{ width: "30vw", fontSize: "1.1rem"}}
                             />
@@ -104,6 +134,14 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
                                 onChange={formik.handleChange} 
                                 sx={{ width: "20vw", fontSize: "1.1rem"}}
                             />
+                            <RadioGroup
+                            name='type'
+                            value={formik.values.type}
+                            onChange={formik.handleChange}
+                            >
+                                <FormControlLabel control={<Radio value={"debit"}/>} label='Débito' />
+                                <FormControlLabel control={<Radio value={"credit"}/>} label='Crédito' />
+                            </RadioGroup>
 
                         </Box>
 
@@ -111,18 +149,15 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
 
                     <ButtonLisas
                         type='submit'
+                        loading={loading}
                         invert
+                        variant="contained"
+                        fullWidth
                         sx={{
-                            position: "relative",
-                            bottom: "-5vw",
-                            alignItems: "center",
-                            gap: "2vw",
-                            justifyContent: "center",
-                            width: "100%",
-                            fontSize: "0.9rem",
+                            fontSize: "1.1rem",
                         }}
                     >
-                        <p style={{ fontSize: "1.1rem"}}>Salvar Perfil</p>    
+                        Salvar Perfil   
                     </ButtonLisas>  
 
                 </form>

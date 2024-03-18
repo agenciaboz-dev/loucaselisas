@@ -2,23 +2,26 @@ import { Box, MenuItem, Select } from '@mui/material'
 import React from 'react'
 import { useFormik } from 'formik'
 import { TextFieldLisas } from '../../../components/TextFieldLisas'
-import { ButtonLisas } from '../../../components/ButtonLisas'
+import { ButtonLisas,  } from '../../../components/ButtonLisas'
+import { useEstadosBrasil } from '../../../hooks/useEstadosBrasil'
+import { User, UserForm } from '../../../types/server/class'
 
-export const FormUpdateProfile = () => {
+interface FormUpdateProfileProps {
+    user:User
+}
 
-    const formik = useFormik({
+export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
+
+    const estados = useEstadosBrasil()
+
+    const formik = useFormik<UserForm>({
         initialValues: {
-            name: "",
-            email: "",
-            password: "",
-            gender: "",
-            birthDate: "",
-            state: "",
-            phone: "",
-            profession: "",
-            instagram: "",
-            tikTok:  ""
-        },
+            ...user,
+            image: null,
+            cover: null,
+            student: !!user.student
+
+                },
 
         onSubmit : values => {
             console.log(values);
@@ -30,10 +33,10 @@ export const FormUpdateProfile = () => {
         <form onSubmit={formik.handleSubmit}>
             <Box sx={{gap:"3vw"}}>
                 <TextFieldLisas 
-                    name='name' 
+                    name='username' 
                     label='Nome de usuário' 
                     placeholder='Nome de usuário'
-                    value={formik.values.name} 
+                    value={formik.values.username} 
                     onChange={formik.handleChange} 
                 />
                 <TextFieldLisas 
@@ -49,40 +52,47 @@ export const FormUpdateProfile = () => {
                     name='password' 
                     label='Nova senha' 
                     placeholder='Digite a nova senha'
-                    value={formik.values.name} 
+                    value={formik.values.password} 
                     onChange={formik.handleChange} 
                 />
                 <Box sx={{flexDirection:"row", gap: "2vw"}}>
                     <Select
-                        name='gender' 
-                        label='Sexo' 
-                        placeholder='Sexo'
-                        value={formik.values.gender} 
+                        name='pronoun' 
+                        label='Pronome' 
+                        placeholder='Pronome'
+                        value={formik.values.pronoun} 
                         onChange={formik.handleChange}
                         sx={{   
                             flex:1,
                             borderRadius: "5vw"
                         }} 
                     >
-                        <MenuItem value={"male"}>masculino</MenuItem>
-                        <MenuItem value={"female"}>feminino</MenuItem>
+                        <MenuItem value={"Sr."}>masculino</MenuItem>
+                        <MenuItem value={"Sra."}>feminino</MenuItem>
                     </Select>
                     <TextFieldLisas 
-                        name='birthDate' 
+                        name='birth' 
                         label='Data de Nascimento' 
                         placeholder='Data de Nascimento'
-                        value={formik.values.birthDate} 
+                        value={formik.values.birth} 
                         onChange={formik.handleChange} 
                         sx={{flex: "1.5"}}
                     />
                 </Box>
                 <TextFieldLisas 
-                    name='state' 
-                    label='Região' 
-                    placeholder='Região'
-                    value={formik.values.state} 
+                    name='value' 
+                    label='Estado' 
+                    placeholder='UF'
+                    value={formik.values.uf} 
                     onChange={formik.handleChange} 
-                />
+                >
+                    {estados.map((estado)=>(
+                        <MenuItem key={estado.id} value={estado.value}>
+                            {estado.label}
+                        </MenuItem>
+                    ))}
+                </TextFieldLisas>
+
                 <Box sx={{flexDirection:"row", gap: "2vw"}}>
                     <TextFieldLisas 
                         name='phone' 
@@ -113,7 +123,7 @@ export const FormUpdateProfile = () => {
                         name='tikTok' 
                         label='Tik Tok' 
                         placeholder='Tik Tok'
-                        value={formik.values.tikTok} 
+                        value={formik.values.tiktok} 
                         onChange={formik.handleChange} 
                     />
                 </Box>
@@ -122,17 +132,15 @@ export const FormUpdateProfile = () => {
             <ButtonLisas
                 type='submit'
                 invert
+                fullWidth
                 sx={{
-                    position: "relative",
-                    bottom: "-5vw",
                     alignItems: "center",
                     gap: "2vw",
                     justifyContent: "center",
-                    width: "100%",
-                    fontSize: "0.9rem",
+                    fontSize: "1.1rem",
                 }}
             >
-                <p style={{ fontSize: "1.1rem"}}>Salvar Perfil</p>    
+                Salvar Perfil    
             </ButtonLisas>  
         </form>
     )

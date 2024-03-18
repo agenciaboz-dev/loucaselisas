@@ -2,12 +2,11 @@ import { Prisma } from "@prisma/client";
 import { Socket } from "socket.io";
 import { LoginForm } from "../types/user/login";
 import { Course } from "./Course";
-import { PaymentCard } from "./PaymentCard";
+import { PaymentCard, PaymentCardForm } from "./PaymentCard";
 import { ImageUpload, WithoutFunctions } from "./helpers";
 import { Creator, CreatorForm, Student } from "./index";
 import { Role } from "./Role";
 export declare const user_include: {
-    courses: true;
     creator: {
         include: {
             categories: true;
@@ -42,11 +41,12 @@ export declare const user_include: {
 export type UserPrisma = Prisma.UserGetPayload<{
     include: typeof user_include;
 }>;
-export type UserForm = Omit<WithoutFunctions<User>, "id" | "admin" | "favorite_creators" | "favorite_courses" | "payment_cards" | "creator" | "student" | "role" | "cover" | "image"> & {
+export type UserForm = Omit<WithoutFunctions<User>, "id" | "admin" | "favorite_creators" | "favorite_courses" | "payment_cards" | "creator" | "student" | "role" | "cover" | "image" | "payment_cards"> & {
     image: ImageUpload | null;
     cover: ImageUpload | null;
     student: boolean;
     creator: CreatorForm | null;
+    payment_cards: PaymentCardForm[];
 };
 export declare class User {
     id: string;
