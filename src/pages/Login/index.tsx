@@ -98,12 +98,12 @@ export const Login: React.FC<LoginProps> = ({}) => {
                     </ButtonLisas>
                 </Box>
                 <Box sx={{ width: "100%", alignItems: "center", gap: "2vw" }}>
-                    <ButtonLisas sx={{ fontSize: "3.5vw", width: "50%" }} invert type="submit">
+                    <ButtonLisas sx={{ fontSize: "3.5vw", width: "50%" }} variant='contained' type="submit">
                         Entrar
                     </ButtonLisas>
                     <ButtonLisas
-                        sx={{ fontSize: "3.5vw", width: "60%", bgcolor: "transparent", color: colors.primary, gap: "2vw" }}
-                        invert
+                        sx={{ fontSize: "3.5vw", width: "60%", gap: "2vw" }}
+                        variant="outlined"
                         // onClick={() => login()}
                     >
                         <FcGoogle style={{ width: "5vw", height: "5vw" }} />

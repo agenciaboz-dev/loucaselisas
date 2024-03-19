@@ -1,22 +1,21 @@
-import { Button, ButtonProps, SxProps } from "@mui/material"
+import { Button, ButtonProps, CircularProgress, SxProps } from "@mui/material"
 import React from "react"
 import { colors } from "../styles/colors"
 
 interface ButtonLisasProps extends ButtonProps {
     invert?: boolean
+    loading?: boolean
 }
 
-export const ButtonLisas: React.FC<ButtonLisasProps> = ({ invert, children, ...props }) => {
+export const ButtonLisas: React.FC<ButtonLisasProps> = ({ invert,loading, children, ...props }) => {
     const button_style: SxProps = {
         padding: "3vw",
         borderRadius: "8vw",
-        backgroundColor: invert ? colors.primary : colors.secondary,
-        color: invert ? colors.secondary : colors.primary,
         textTransform: "none",
     }
     return (
         <Button {...props} sx={{ ...button_style, ...props.sx }}>
-            {children}
+            {loading ? <CircularProgress size='1.5rem' color="secondary" /> : children}
         </Button>
     )
 }

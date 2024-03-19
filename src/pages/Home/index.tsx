@@ -25,7 +25,7 @@ export const Home: React.FC<HomeProps> = ({}) => {
         >
             <img src={Logo} style={{ width: "85vw", height: "85vw" }} />
             <Box sx={{ width: "100%", p: "3vw", gap: "5vw", alignItems: "center" }}>
-                <ButtonLisas sx={button_style} onClick={() => navigate("/login")}>
+                <ButtonLisas sx={button_style} onClick={() => navigate("/login")} color="secondary" variant="contained">
                     Entrar
                 </ButtonLisas>
                 <p
