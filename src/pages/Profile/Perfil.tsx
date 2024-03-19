@@ -127,7 +127,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                         p: "0",
                                         fontWeight: "400",
                                     }}
-                                    onClick={() => navigate("/account/cards")}
+                                    onClick={() => navigate("/account/payments-history")}
                                 >
                                     Histórico do pedido
                                     <ArrowRightIcon />

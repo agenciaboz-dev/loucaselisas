@@ -1,5 +1,4 @@
 import React from 'react'
-import { User } from "../types/server/class"
 import { Box } from '@mui/material'
 import { PaymentCard } from '../types/server/class/PaymentCard'
 
