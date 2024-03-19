@@ -1,8 +1,9 @@
-import { Box, MenuItem, Select } from '@mui/material'
+import { Box, MenuItem, } from '@mui/material'
 import React, {useEffect, useState} from 'react'
 import { useFormik } from 'formik'
 import { TextFieldLisas } from '../../../components/TextFieldLisas'
 import { ButtonLisas,  } from '../../../components/ButtonLisas'
+import { usePronoun } from '../../../hooks/usePronoun'
 import { useEstadosBrasil } from '../../../hooks/useEstadosBrasil'
 import { User, UserForm } from '../../../types/server/class'
 import { useIo } from '../../../hooks/useIo'
@@ -16,6 +17,7 @@ interface FormUpdateProfileProps {
 
 export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
 
+    const pronouns = usePronoun()
     const estados = useEstadosBrasil()
     const [loading, setLoading] = useState(false)
     const io = useIo()
@@ -29,6 +31,7 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
             ...user,
             image: null,
             cover: null,
+            pronoun: "Other",
             student: !!user.student
 
                 },
@@ -99,7 +102,8 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
                     onChange={formik.handleChange} 
                 />
                 <Box sx={{flexDirection:"row", gap: "2vw"}}>
-                    <Select
+                    <TextFieldLisas
+                        select
                         name='pronoun' 
                         label='Pronome' 
                         placeholder='Pronome'
@@ -110,9 +114,12 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
                             borderRadius: "5vw"
                         }} 
                     >
-                        <MenuItem value={"mr"}>Sr.</MenuItem>
-                        <MenuItem value={"mrs"}>Sra.</MenuItem>
-                    </Select>
+                        {pronouns.map((pronoun)=>(
+                            <MenuItem key={pronoun.value} value={pronoun.value}>
+                                {pronoun.label}
+                            </MenuItem>
+                        ))}
+                    </TextFieldLisas>
                     <TextFieldLisas 
                         name='birth' 
                         label='Data de Nascimento' 
@@ -123,7 +130,7 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
                     />
                 </Box>
                 <TextFieldLisas 
-                select
+                    select
                     name='uf' 
                     label='Estado' 
                     placeholder='UF'
@@ -164,7 +171,7 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
                         onChange={formik.handleChange} 
                     />
                     <TextFieldLisas 
-                        name='tikTok' 
+                        name='tiktok' 
                         label='Tik Tok' 
                         placeholder='Tik Tok'
                         value={formik.values.tiktok || ""} 

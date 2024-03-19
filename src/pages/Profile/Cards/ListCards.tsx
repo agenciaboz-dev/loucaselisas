@@ -1,15 +1,12 @@
 import React from "react"
-import { User } from "../../../types/server/class"
+import { User, UserForm } from "../../../types/server/class"
 import { Box } from "@mui/material"
 import { ButtonLisas } from "../../../components/ButtonLisas"
 import { useNavigate } from "react-router-dom"
 import { ArrowLeftIcon } from "@mui/x-date-pickers"
-import { colors } from "../../../styles/colors"
 import { Card } from "../../../components/Card"
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-
-import { useFormik } from 'formik';
 
 
 interface ListCardsProps {
@@ -19,7 +16,8 @@ interface ListCardsProps {
 export const ListCards: React.FC<ListCardsProps> = ({ user }) => {
 
     const navigate = useNavigate()
-
+    
+    
 
     return (
         <Box sx={{width: "100%", flex: 1, flexDirection: "column", p:"4vw"}}>
@@ -38,7 +36,8 @@ export const ListCards: React.FC<ListCardsProps> = ({ user }) => {
                     <ArrowLeftIcon />
                     <p style={{ fontSize: "1.1rem"}}>Cartões de pagamentos salvos</p>         
                 </ButtonLisas>
-                <Card></Card>
+                
+                {user.payment_cards.map(card => <Card card={card} key={card.id} />)}
                 <ButtonLisas
                     sx={{
                         gap: "2vw",
