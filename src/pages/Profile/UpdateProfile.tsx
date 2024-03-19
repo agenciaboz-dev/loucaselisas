@@ -19,12 +19,11 @@ export const UpdateProfile:React.FC<UpdateProfileProps> = ({ user }) => {
         <Box sx={{width: "100%", flex: 1, flexDirection: "column", p:"4vw",}}>
         <Box sx={{width:"100%", flex: 1, alignItems:"center", gap:"3vw", }}>
             <ButtonLisas
+                    fullWidth
                     sx={{
-                        alignItems: "center",
                         gap: "2vw",
                         alignSelf: "flex-start",
                         justifyContent: "start",
-                        width: "100%",
                         fontSize: "0.9rem",
                     }}
                     onClick={() => navigate("/account")}
@@ -33,7 +32,6 @@ export const UpdateProfile:React.FC<UpdateProfileProps> = ({ user }) => {
                 <p style={{ fontSize: "1.1rem"}}>Editar perfil</p>    
             </ButtonLisas> 
             <Box sx={{gap: "3vw"}}>
-                <ImageUpdate/>
                 <FormUpdateProfile user={user}/>
             </Box>            
         </Box>

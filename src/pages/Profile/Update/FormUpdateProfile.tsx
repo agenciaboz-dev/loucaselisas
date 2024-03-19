@@ -10,6 +10,8 @@ import { useIo } from '../../../hooks/useIo'
 import { useUser } from '../../../hooks/useUser'
 import { useSnackbar } from 'burgos-snackbar'
 import { useNavigate } from 'react-router-dom'
+import { Avatar, Dropzone,  } from '@files-ui/react'
+import media from "../../../assets/media.png"
 
 interface FormUpdateProfileProps {
     user:User
@@ -24,6 +26,7 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
     const {setUser} = useUser()
     const { snackbar } = useSnackbar()
     const navigate = useNavigate()
+    const [image, setImage] = useState<File>()
 
 
     const formik = useFormik<UserForm>({
@@ -31,7 +34,6 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
             ...user,
             image: null,
             cover: null,
-            pronoun: "Other",
             student: !!user.student
 
                 },
@@ -51,7 +53,12 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
                 phone: values.phone,
                 profession: values.profession,
                 instagram: values.instagram,
-                tiktok: values.tiktok   
+                tiktok: values.tiktok,   
+                image: image ? {
+                    file: image,
+                    name: image.name,
+                }
+                : undefined,
             }
             io.emit("user:update", data)
         }
@@ -77,6 +84,27 @@ export const FormUpdateProfile:React.FC<FormUpdateProfileProps> = ({user}) => {
 
     return (
         <form onSubmit={formik.handleSubmit}>
+            <Box sx={{width:1, }}>
+                <p style={{paddingLeft:"2vw",fontSize: "0.9rem", color:"#808080"}}>Imagem de capa</p>
+                        <Box sx={{ width:1, borderRadius:"3vw", p:"3vw", flexDirection:"collumn", gap:"2vw", alignItems:"center", border:"0.5vw dashed #000"}}>
+                        <Avatar 
+                                src={
+                                    image || "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"
+                                }
+                                variant="circle"
+                                onChange={(file) => setImage(file)}
+                                style={{ width: "20vw", height: "20vw", alignSelf: "center" }}
+                                emptyLabel="enviar imagem"
+                                changeLabel="trocar imagem"
+                            />
+                            <p style={{fontSize: "0.9rem"}}>Selecione um arquivo para fazer upload</p>
+                        </Box>
+                <Box sx={{fontSize: "0.9rem", width:1, textAlign:"center", color:"#808080" }}>*informações e restrições de envio de imagem*</Box>
+                
+            </Box>
+
+            
+
             <Box sx={{gap:"3vw"}}>
                 <TextFieldLisas 
                     name='username' 
