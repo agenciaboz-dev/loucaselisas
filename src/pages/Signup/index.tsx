@@ -56,6 +56,7 @@ export const Signup: React.FC<SignupProps> = ({}) => {
             google_id: null,
             google_token: null,
             image: null,
+            payment_cards: [],
         },
         onSubmit: (values) => {
             const data = {
