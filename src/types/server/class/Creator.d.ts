@@ -4,7 +4,46 @@ import { Course } from "./Course";
 import { Socket } from "socket.io";
 export declare const creator_include: {
     categories: true;
-    courses: true;
+    courses: {
+        include: {
+            categories: true;
+            chat: {
+                include: {
+                    media: {
+                        include: {
+                            images: true;
+                            videos: true;
+                        };
+                    };
+                    messages: true;
+                };
+            };
+            creators: {
+                include: {
+                    user: true;
+                };
+            };
+            gallery: {
+                include: {
+                    images: true;
+                    videos: true;
+                };
+            };
+            owner: {
+                include: {
+                    user: true;
+                };
+            };
+            students: true;
+            favorited_by: true;
+            lessons: {
+                include: {
+                    image: true;
+                    video: true;
+                };
+            };
+        };
+    };
     favorited_by: true;
 };
 export type CreatorPrisma = Prisma.CreatorGetPayload<{
@@ -19,6 +58,7 @@ export declare class Creator {
     language: string;
     description: string;
     active: boolean;
+    favorited_by: number;
     courses: Course[];
     constructor(id: string, data?: CreatorPrisma);
     init(): Promise<void>;

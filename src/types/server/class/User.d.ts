@@ -3,29 +3,145 @@ import { Socket } from "socket.io";
 import { LoginForm } from "../types/user/login";
 import { Course } from "./Course";
 import { PaymentCard, PaymentCardForm } from "./PaymentCard";
-import { ImageUpload, WithoutFunctions } from "./helpers";
+import { FileUpload, WithoutFunctions } from "./helpers";
 import { Creator, CreatorForm, Student } from "./index";
 import { Role } from "./Role";
 export declare const user_include: {
     creator: {
         include: {
             categories: true;
-            courses: true;
+            courses: {
+                include: {
+                    categories: true;
+                    chat: {
+                        include: {
+                            media: {
+                                include: {
+                                    images: true;
+                                    videos: true;
+                                };
+                            };
+                            messages: true;
+                        };
+                    };
+                    creators: {
+                        include: {
+                            user: true;
+                        };
+                    };
+                    gallery: {
+                        include: {
+                            images: true;
+                            videos: true;
+                        };
+                    };
+                    owner: {
+                        include: {
+                            user: true;
+                        };
+                    };
+                    students: true;
+                    favorited_by: true;
+                    lessons: {
+                        include: {
+                            image: true;
+                            video: true;
+                        };
+                    };
+                };
+            };
             favorited_by: true;
         };
     };
     student: {
         include: {
             user: true;
-            courses: true;
+            courses: {
+                include: {
+                    categories: true;
+                    chat: {
+                        include: {
+                            media: {
+                                include: {
+                                    images: true;
+                                    videos: true;
+                                };
+                            };
+                            messages: true;
+                        };
+                    };
+                    creators: {
+                        include: {
+                            user: true;
+                        };
+                    };
+                    gallery: {
+                        include: {
+                            images: true;
+                            videos: true;
+                        };
+                    };
+                    owner: {
+                        include: {
+                            user: true;
+                        };
+                    };
+                    students: true;
+                    favorited_by: true;
+                    lessons: {
+                        include: {
+                            image: true;
+                            video: true;
+                        };
+                    };
+                };
+            };
         };
     };
     favorite_courses: true;
     favorite_creators: {
         include: {
-            user: true;
-            courses: true;
             categories: true;
+            courses: {
+                include: {
+                    categories: true;
+                    chat: {
+                        include: {
+                            media: {
+                                include: {
+                                    images: true;
+                                    videos: true;
+                                };
+                            };
+                            messages: true;
+                        };
+                    };
+                    creators: {
+                        include: {
+                            user: true;
+                        };
+                    };
+                    gallery: {
+                        include: {
+                            images: true;
+                            videos: true;
+                        };
+                    };
+                    owner: {
+                        include: {
+                            user: true;
+                        };
+                    };
+                    students: true;
+                    favorited_by: true;
+                    lessons: {
+                        include: {
+                            image: true;
+                            video: true;
+                        };
+                    };
+                };
+            };
             favorited_by: true;
         };
     };
@@ -42,8 +158,8 @@ export type UserPrisma = Prisma.UserGetPayload<{
     include: typeof user_include;
 }>;
 export type UserForm = Omit<WithoutFunctions<User>, "id" | "admin" | "favorite_creators" | "favorite_courses" | "payment_cards" | "creator" | "student" | "role" | "cover" | "image" | "payment_cards"> & {
-    image: ImageUpload | null;
-    cover: ImageUpload | null;
+    image: FileUpload | null;
+    cover: FileUpload | null;
     student: boolean;
     creator: CreatorForm | null;
     payment_cards: PaymentCardForm[];
@@ -81,8 +197,8 @@ export declare class User {
     }, socket: Socket): Promise<void>;
     static updateImage(data: {
         id: string;
-        image: ImageUpload | null;
-        cover: ImageUpload | null;
+        image: FileUpload | null;
+        cover: FileUpload | null;
     }, socket: Socket): Promise<void>;
     static signup(socket: Socket, data: UserForm): Promise<void>;
     static list(socket: Socket): Promise<void>;
@@ -90,7 +206,7 @@ export declare class User {
     load(data: UserPrisma): void;
     update(data: Partial<UserPrisma>, socket?: Socket): Promise<void>;
     updateImage(data: {
-        image: ImageUpload | null;
-        cover: ImageUpload | null;
+        image: FileUpload | null;
+        cover: FileUpload | null;
     }, socket?: Socket): Promise<void>;
 }

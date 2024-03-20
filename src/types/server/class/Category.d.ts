@@ -1,14 +1,12 @@
 import { Prisma } from "@prisma/client";
-import { category as include } from "../prisma/include";
-import { Creator, CreatorPrisma } from "./Creator";
+export declare const category_include: {};
 export type CategoryPrisma = Prisma.CategoryGetPayload<{
-    include: typeof include;
+    include: typeof category_include;
 }>;
 export declare class Category {
     id: string;
     name: string;
     cover: string;
-    creators: Creator[];
     constructor(data: CategoryPrisma);
-    load(data: CategoryPrisma, creators: CreatorPrisma[]): void;
+    load(data: CategoryPrisma): void;
 }

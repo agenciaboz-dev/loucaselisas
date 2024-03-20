@@ -1,7 +1,46 @@
 import { Prisma } from "@prisma/client";
 import { Course } from "./Course";
 export declare const student_include: {
-    courses: true;
+    courses: {
+        include: {
+            categories: true;
+            chat: {
+                include: {
+                    media: {
+                        include: {
+                            images: true;
+                            videos: true;
+                        };
+                    };
+                    messages: true;
+                };
+            };
+            creators: {
+                include: {
+                    user: true;
+                };
+            };
+            gallery: {
+                include: {
+                    images: true;
+                    videos: true;
+                };
+            };
+            owner: {
+                include: {
+                    user: true;
+                };
+            };
+            students: true;
+            favorited_by: true;
+            lessons: {
+                include: {
+                    image: true;
+                    video: true;
+                };
+            };
+        };
+    };
     user: true;
 };
 export type StudentPrisma = Prisma.StudentGetPayload<{
