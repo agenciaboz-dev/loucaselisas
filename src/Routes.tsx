@@ -40,7 +40,7 @@ const AdminRoutes: React.FC<{ user: User }> = ({ user }) => {
 const UserRoutes: React.FC<{ user: User }> = ({ user }) => {
     const bottomMenu = useNavigationList()
     return (
-        <>
+        <Box sx={{ flexDirection: "column", height: 1, width: 1, overflow: "hidden", flex: 1 }}>
             <BottomNavigation section={user.student ? bottomMenu.student : bottomMenu.creator} />
             <ReactRoutes>
                 {user.student ? (
@@ -50,7 +50,7 @@ const UserRoutes: React.FC<{ user: User }> = ({ user }) => {
                 )}
                 <Route path="/account/*" element={<Profile user={user} />} />
             </ReactRoutes>
-        </>
+        </Box>
     )
 }
 

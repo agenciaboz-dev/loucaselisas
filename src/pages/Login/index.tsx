@@ -98,7 +98,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                     </ButtonLisas>
                 </Box>
                 <Box sx={{ width: "100%", alignItems: "center", gap: "2vw" }}>
-                    <ButtonLisas sx={{ fontSize: "3.5vw", width: "50%" }} variant='contained' type="submit">
+                    <ButtonLisas sx={{ fontSize: "3.5vw", width: "60%" }} variant='contained' type="submit">
                         Entrar
                     </ButtonLisas>
                     <ButtonLisas

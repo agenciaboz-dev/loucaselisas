@@ -17,24 +17,25 @@ interface PerfilProps {
 export const Perfil: React.FC<PerfilProps> = ({ user }) => {
     const navigate = useNavigate()
     const [image, setImage] = useState("")
+    const [expanded, setExpanded] = useState(false)
 
     return (
         <Box sx={{ width: 1, flexDirection: "column", overflowY: "auto" }}>
             <Box sx={{ width: 1, height: 0.9, padding: "3vw" }}>
                 <Box sx={{ width: 1, padding: "1vw", alignItems: "center" }}>
                     <Image
-                        src={cover}
+                        src={user.cover || ""}
                         sx={{ width: 1, height: "35vw", borderRadius: "3vw", bgcolor: colors.terciary }}
                     ></Image>
                     <Image
-                        src={profile}
+                        src={user.image || ""}
                         variant="circular"
-                        sx={{ width: "30vw", height: "30vw", position: "relative", bottom: "20vw" }}
+                        sx={{ width: "25vw", height: "25vw", position: "relative", bottom: "15vw" }}
                     />
 
-                    <Box sx={{ gap: "6vw", position: "relative", bottom: "18vw" }}>
+                    <Box sx={{ gap: "6vw", position: "relative", bottom: "13vw" }}>
                         <Box sx={{ alignItems: "center", gap: "2vw" }}>
-                            <p style={{ fontSize: "1.5rem" }}>@{user.username}</p>
+                            <p style={{ fontSize: "1.5rem" }}>{user.name}</p>
                             <p
                                 style={{
                                     // paddingTop: "14vw",
@@ -52,6 +53,17 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                 pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                                 fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
                                 dolore eu fugiat nulla pariatur.
+                            </p>
+                            <p
+                                style={{
+                                    textDecoration: "underline",
+                                    fontSize: "0.8rem",
+                                    alignSelf: "end",
+                                    marginRight: "1vw",
+                                }}
+                                onClick={() => {}}
+                            >
+                                Ler mais
                             </p>
                         </Box>
                         <Box

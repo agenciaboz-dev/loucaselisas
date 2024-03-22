@@ -7,7 +7,7 @@ interface ButtonLisasProps extends ButtonProps {
     loading?: boolean
 }
 
-export const ButtonLisas: React.FC<ButtonLisasProps> = ({ invert,loading, children, ...props }) => {
+export const ButtonLisas: React.FC<ButtonLisasProps> = ({ invert, loading, children, ...props }) => {
     const button_style: SxProps = {
         padding: "3vw",
         borderRadius: "8vw",
@@ -15,7 +15,7 @@ export const ButtonLisas: React.FC<ButtonLisasProps> = ({ invert,loading, childr
     }
     return (
         <Button {...props} sx={{ ...button_style, ...props.sx }}>
-            {loading ? <CircularProgress size='1.5rem' color="secondary" /> : children}
+            {loading ? <CircularProgress size="1.5rem" color="secondary" /> : children}
         </Button>
     )
 }

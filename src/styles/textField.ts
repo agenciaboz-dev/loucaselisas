@@ -11,12 +11,12 @@ export const textField = {
     },
     "& .MuiOutlinedInput-root": {
         fieldset: {
-            borderRadius: "5vw",
-            border: "0.5px solid #000",
+            borderRadius: "2vw",
+            border: "0.5px solid rgba(105, 105, 105, 1)",
         },
     },
     "& .MuiOutlinedInput-input": {
-        // height: "3vw",
+        height: "2vw",
     },
     "& .MuiInputBase-input.MuiOutlinedInput-input:-webkit-autofill": {
         "-webkit-box-shadow": ` 0 0 0 100px ${colors.secondary} inset`,
@@ -25,7 +25,6 @@ export const textField = {
         bgcolor: "",
     },
 }
-
 
 /*
 export const selectInput = {

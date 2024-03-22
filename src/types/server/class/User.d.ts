@@ -157,6 +157,11 @@ export declare const user_include: {
 export type UserPrisma = Prisma.UserGetPayload<{
     include: typeof user_include;
 }>;
+export interface UserImageForm {
+    id: string;
+    image?: FileUpload | null;
+    cover?: FileUpload | null;
+}
 export type UserForm = Omit<WithoutFunctions<User>, "id" | "admin" | "favorite_creators" | "favorite_courses" | "payment_cards" | "creator" | "student" | "role" | "cover" | "image" | "payment_cards"> & {
     image: FileUpload | null;
     cover: FileUpload | null;
@@ -195,18 +200,13 @@ export declare class User {
     static update(data: Partial<UserPrisma> & {
         id: string;
     }, socket: Socket): Promise<void>;
-    static updateImage(data: {
+    static updateImage(data: UserImageForm & {
         id: string;
-        image: FileUpload | null;
-        cover: FileUpload | null;
     }, socket: Socket): Promise<void>;
     static signup(socket: Socket, data: UserForm): Promise<void>;
     static list(socket: Socket): Promise<void>;
     static login(socket: Socket, data: LoginForm): Promise<void>;
     load(data: UserPrisma): void;
     update(data: Partial<UserPrisma>, socket?: Socket): Promise<void>;
-    updateImage(data: {
-        image: FileUpload | null;
-        cover: FileUpload | null;
-    }, socket?: Socket): Promise<void>;
+    updateImage(data: UserImageForm, socket?: Socket): Promise<void>;
 }
