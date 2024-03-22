@@ -8,6 +8,7 @@ export const textField = {
     },
     "& .MuiInputLabel-root ": {
         color: colors.primary,
+        fontSize: "0.8rem",
     },
     "& .MuiOutlinedInput-root": {
         fieldset: {

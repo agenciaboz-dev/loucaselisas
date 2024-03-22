@@ -15,22 +15,36 @@ import media from "../../../assets/media.png"
 import { UserImageForm } from "../../../types/server/class/User"
 import { FcAddImage } from "react-icons/fc"
 import { FiMoreHorizontal } from "react-icons/fi"
-import { IoAddCircle, IoAddCircleOutline, IoTrash, IoTrashOutline } from "react-icons/io5"
+import {
+    IoAddCircle,
+    IoAddCircleOutline,
+    IoClose,
+    IoCloseCircleOutline,
+    IoCloseOutline,
+    IoTrash,
+    IoTrashOutline,
+} from "react-icons/io5"
+import { colors } from "../../../styles/colors"
+import { ArrowRightIcon } from "@mui/x-date-pickers"
+import { DialogConfirm } from "../../../components/DialogConfirm"
 
 interface FormUpdateProfileProps {
     user: User
 }
 
 export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) => {
+    const io = useIo()
     const pronouns = usePronoun()
     const estados = useEstadosBrasil()
-    const [loading, setLoading] = useState(false)
-    const io = useIo()
     const { setUser } = useUser()
     const { snackbar } = useSnackbar()
     const navigate = useNavigate()
+
     const [image, setImage] = useState<File>()
     const [cover, setCover] = useState<File>()
+
+    const [loading, setLoading] = useState(false)
+    const [open, setOpen] = useState(false)
 
     const formik = useFormik<Partial<UserForm>>({
         initialValues: {
@@ -100,8 +114,24 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
         }
     }, [])
 
+    const handleDelete = () => {
+        if (user) io.emit("user:delete", user.id)
+    }
+
+    useEffect(() => {
+        io.on("user:delete", (user: User) => {
+            snackbar({ severity: "info", text: "Usuário excluído com sucesso!" })
+            // removeUser(user) removerUsuário da lista de users
+            setUser(null)
+            navigate("/login")
+        })
+        io.on("user:delete:error", (user: User) => {
+            snackbar({ severity: "error", text: "Aldo deu errado! tente novamente mais tarde." })
+        })
+    }, [])
+
     return (
-        <Box sx={{ overflowY: "auto", gap: "2vw" }}>
+        <Box sx={{ overflowY: "auto", gap: "5vw" }}>
             <form onSubmit={formik.handleSubmit}>
                 <Box sx={{ width: 1, gap: "vw" }}>
                     <p style={{ paddingLeft: "2vw", fontSize: "0.9rem", color: "#808080" }}>Imagem de perfil</p>
@@ -202,7 +232,8 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
                         </Box>
                     </Box>
                 </Box>
-                <Box sx={{ gap: "6vw", pb: "2vw", bgcolor: "rgba(248, 248, 248, 1)", p: "4vw" }}>
+
+                <Box sx={{ gap: "6vw", pb: "2vw", bgcolor: "rgba(248, 248, 248, 1)", p: "4vw", borderRadius: "3vw" }}>
                     <Box sx={{ gap: "4vw" }}>
                         <TextFieldLisas
                             name="name"
@@ -336,6 +367,72 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
                 >
                     Salvar Perfil
                 </ButtonLisas>
+                <Box sx={{ p: "2vw" }}>
+                    <Box
+                        sx={{
+                            p: "2.5vw",
+                            pl: "3.5vw",
+                            border: `1px solid ${colors.delete}`,
+                            borderRadius: "3vw",
+                            gap: "2vw",
+                        }}
+                    >
+                        <p style={{ fontSize: "1rem", fontWeight: "600" }}>Área Perigosa</p>
+                        <p style={{ fontSize: "0.8rem" }}>
+                            Informações sobre a política de exclusão de conta{" "}
+                            <span style={{ textDecoration: "underline" }}>aqui</span>.
+                        </p>
+                        <Box
+                            sx={{
+                                flexDirection: "row",
+                                gap: "1vw",
+                                p: "1vw",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                bgcolor: "rgba(248, 248, 248, 1)",
+                                borderRadius: "3vw",
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    flexDirection: "row",
+                                    gap: "1vw",
+                                    alignItems: "center",
+                                    borderRadius: "3vw",
+                                    p: "1vw",
+                                }}
+                            >
+                                <IoCloseCircleOutline />
+                                <p style={{ fontSize: "1rem" }}>Deletar Conta</p>
+                            </Box>
+                            <IconButton
+                                onClick={() => {
+                                    setOpen(true)
+                                }}
+                            >
+                                <ArrowRightIcon />
+                            </IconButton>
+                        </Box>
+                    </Box>
+                </Box>
+                <DialogConfirm
+                    open={open}
+                    setOpen={setOpen}
+                    data={{
+                        title: "Tem certeza que deseja excluir sua conta? ",
+                        submitTitle: "Sim, excluir",
+                        content:
+                            "Ao excluir conta você perderá todos os seus dados e acessos. Esse processo é irreversível.",
+                        cancelTitle: "Não, cancelar",
+                    }}
+                    click={() => {
+                        {
+                            !loading && setOpen(false)
+                        }
+                        handleDelete()
+                    }}
+                    loading={loading}
+                />
             </form>
         </Box>
     )
