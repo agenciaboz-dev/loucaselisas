@@ -7,7 +7,8 @@ import { ButtonLisas } from "../../components/ButtonLisas"
 import ThumbCourses from "../../components/panel/ThumbCourses"
 import { useArray } from "../../hooks/useArray"
 import { Search } from "../../components/Search"
-import { IoIosMenu } from "react-icons/io";
+import { IoIosMenu } from "react-icons/io"
+import { CardCourse } from "../../components/CardCourse"
 interface PanelProps {
     user: User
 }
@@ -35,10 +36,10 @@ const box_container_courses_style = {
 }
 export const Panel: React.FC<PanelProps> = ({ user }) => {
     const { newArray } = useArray()
-    const chips = newArray(4)
+    const chips = newArray(3)
     return (
         <Box sx={{ width: "100%", flex: 1, flexDirection: "column", p: "4vw" }}>
-            <Box sx={{ width: "100%", flex: 1, alignItems: "center", gap: "3vw" }}>
+            <Box sx={{ width: "100%", alignItems: "center", gap: "3vw" }}>
                 <Box sx={box_container_courses_style}>
                     {chips.map((item) => (
                         <ButtonLisas variant="outlined" sx={button_style}>
@@ -51,11 +52,16 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                         <ThumbCourses />
                     ))}
                 </Box>
-            </Box>
-            <Box>
-                <Box>
-                    <p>Explorar</p>
-                    <Search />
+                <Box sx={{ width: 1, gap: "4vw", overflowY: "auto" }}>
+                    <Box sx={{ gap: "2vw" }}>
+                        <p style={{ fontSize: "1.2rem" }}>Explorar</p>
+                        <Search />
+                    </Box>
+                    <Box sx={{ gap: "0vw", overflowY: "auto" }}>
+                        {chips.map((item) => (
+                            <CardCourse />
+                        ))}
+                    </Box>
                 </Box>
             </Box>
         </Box>
