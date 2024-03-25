@@ -33,10 +33,14 @@ export const Login: React.FC<LoginProps> = ({}) => {
 
     useEffect(() => {
         io.on("user:login", (data: User) => {
-            console.log({ User: data })
-            setUser(data)
-            snackbar({ severity: "success", text: "Você está logado!" })
-            navigate(data.admin ? "/admin" : data.student ? "/student" : data.creator ? "/creator" : "/student")
+            if (data) {
+                console.log({ User: data })
+                setUser(data)
+                snackbar({ severity: "success", text: "Você está logado!" })
+                navigate(data.admin ? "/admin" : data.student ? "/student" : data.creator ? "/creator" : "/student")
+            } else {
+                snackbar({ severity: "error", text: "Não foi possível fazer login" })
+            }
         })
 
         io.on("user:login:error", (error) => {
