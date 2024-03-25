@@ -39,18 +39,15 @@ export const ListCards: React.FC<ListCardsProps> = ({ user }) => {
                 ))}
                 <ButtonLisas
                     sx={{
-                        gap: "2vw",
-                        position: "absolute",
-                        bottom: "30vw",
-                        p: "1vw",
-                        borderRadius: "50%",
-                        height: "14vw",
-                        right:"7vw"
+                        p: "2vw 5vw",
+                        gap:"2vw"
+                        
                     }}
                     variant="contained"
                     onClick={() => navigate("/account/add-card")}
                 >
-                    <IoAdd style={{ width: "8vw", height: "8vw" }} />
+                    <AddCircleOutlineIcon/>
+                    Adicionar outro cartão
                 </ButtonLisas>
             </Box>
         </Box>
