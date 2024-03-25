@@ -28,12 +28,9 @@ export const Home: React.FC<HomeProps> = ({}) => {
                 <ButtonLisas sx={button_style} onClick={() => navigate("/login")} color="secondary" variant="contained">
                     Entrar
                 </ButtonLisas>
-                <p
-                    style={{ color: colors.secondary, fontSize: "3.2vw", textDecoration: "underline" }}
-                    onClick={() => navigate("/signup")}
-                >
+                <ButtonLisas onClick={() => navigate("/signup")} color="secondary" sx={{ ...button_style, textDecoration: "underline" }}>
                     Criar Conta
-                </p>
+                </ButtonLisas>
             </Box>
         </Box>
     )
