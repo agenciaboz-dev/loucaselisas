@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { ArrowLeftIcon } from "@mui/x-date-pickers"
 import { Card } from "../../../components/Card"
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline"
-import { IoAdd } from "react-icons/io5"
+
 
 interface ListCardsProps {
     user: User
@@ -35,7 +35,7 @@ export const ListCards: React.FC<ListCardsProps> = ({ user }) => {
                 </ButtonLisas>
 
                 {user.payment_cards.map((card) => (
-                    <Card card={card} key={card.id} />
+                    <Card card={card} key={card.id} user={user}/>
                 ))}
                 <ButtonLisas
                     sx={{

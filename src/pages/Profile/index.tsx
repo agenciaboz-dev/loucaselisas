@@ -6,7 +6,7 @@ import { ListCards } from "./Cards/ListCards"
 import { AddCard } from "./Cards/AddCard"
 import { Subscription } from "./Subscription"
 import { UpdateProfile } from "./UpdateProfile"
-import { PaymentsHystory } from "./PaymentsHystory"
+import { PaymentsHistory } from "./PaymentsHistory"
 
 interface ProfileProps {
     user: User
@@ -19,9 +19,10 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
             <Route path="/" element={<Perfil user={user} />} />
             <Route path="/cards" element={<ListCards user={user} />} />
             <Route path="/add-card" element={<AddCard user={user} />} />
+            <Route path="/add-card/:id" element={<AddCard user={user} />} />
             <Route path="/subscription" element={<Subscription />} />
             <Route path="/update-profile" element={<UpdateProfile user={user} />} />
-            <Route path="/payments-history" element={<PaymentsHystory />} />
+            <Route path="/payments-history" element={<PaymentsHistory />} />
         </ReactRoutes>
     )
 }

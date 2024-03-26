@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { User, UserForm } from "../../../types/server/class"
 import { ButtonLisas } from "../../../components/ButtonLisas"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Box, FormControlLabel, Radio, RadioGroup } from "@mui/material"
 import { ArrowLeftIcon } from "@mui/x-date-pickers"
 import { useFormik } from "formik"
@@ -26,13 +26,22 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
     const { setUser } = useUser()
     const { snackbar } = useSnackbar()
 
+    const currentCardId = useParams().id
+    const currentCard = user.payment_cards.find((card)=> card.id == currentCardId) 
+
+    //const current_id = Number(useParams().id)
+    //const current_user = user.list.find((user) => user.id == current_id)
+
+
     const formik = useFormik<PaymentCardForm>({
-        initialValues: {
+        initialValues:  currentCard? 
+        {...currentCard} :  {
             cvc: "",
             number: "",
             owner: "",
             type: "credit",
             validity: "",
+            id: "",
         },
 
         onSubmit: (values) => {
@@ -41,7 +50,7 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
             setLoading(true)
             const data: Partial<UserForm> & { id: string } = {
                 id: user.id,
-                payment_cards: [...user.payment_cards, values],
+                payment_cards: [...user.payment_cards.filter(card => card.id !== values.id), values],
             }
             io.emit("user:update", data)
         },
@@ -51,7 +60,7 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
         io.on("user:update", (user: User) => {
             setLoading(false)
             setUser(user)
-            snackbar({ severity: "success", text: "Cartão cadastrado com sucesso" })
+            snackbar({ severity: "success", text: "Cartão atualizado com sucesso" })
             navigate("/account/cards")
         })
         io.on("user:update:error", (error: string) => {
