@@ -1,16 +1,62 @@
-import React from "react";
-import { Avatar, Box, Button, Paper } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Button, IconButton,  } from "@mui/material";
 import { PaymentCard } from "../types/server/class/PaymentCard";
 import EditIcon from "@mui/icons-material/Edit";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import cover from "../assets/cover.jpg";
+//import cover from "../assets/cover.jpg";
 import { colors } from "../styles/colors";
+import { useNavigate } from "react-router-dom";
+import { useConfirmDialog } from "burgos-confirm";
+import { User, UserForm } from "../types/server/class";
+import { useIo } from "../hooks/useIo";
+import { useSnackbar } from "burgos-snackbar";
+import { useUser } from "../hooks/useUser";
 
 interface CardProps {
   card: PaymentCard;
+  user: User
 }
 
-export const Card: React.FC<CardProps> = ({ card }) => {
+export const Card: React.FC<CardProps> = ({ card, user}) => {
+
+  const navigate = useNavigate();
+  const { setUser } = useUser()
+  const [loading, setLoading] = useState(false)
+  const { snackbar } = useSnackbar()
+  const { confirm } = useConfirmDialog()
+  const io = useIo()
+
+  const handleDelete = () => {
+    if (!card.id) return
+      confirm({
+          title: "deletar cartão",
+          content: "tem certeza?",
+          onConfirm: () => {
+            const data: Partial<UserForm> & { id: string } = {
+              id: user.id,
+              payment_cards: [...user.payment_cards.filter(c => c.id !== card.id)]
+          }
+            io.emit("user:update", data)
+          },
+      })
+  }
+
+  useEffect(() => {
+    io.on("user:update", (user: User) => {
+        setLoading(false)
+        setUser(user)
+        snackbar({ severity: "success", text: "Cartão excluido com sucesso" })
+    })
+    io.on("user:update:error", (error: string) => {
+        setLoading(false)
+        snackbar({ severity: "error", text: error })
+    })
+    return () => {
+        io.off("user:update")
+        io.off("user:update:error")
+    }
+}, [])
+
   return (
     <Box
       width="100%"
@@ -48,8 +94,8 @@ export const Card: React.FC<CardProps> = ({ card }) => {
         </Box>
       </Box>
       <Box justifyContent="center">
-        <Button><EditIcon /></Button>
-        <Button><HighlightOffIcon /></Button>
+        <IconButton onClick={() => navigate(`/account/add-card/${card.id}`)}><EditIcon /></IconButton>
+        <IconButton onClick={handleDelete}><HighlightOffIcon /></IconButton>
       </Box>
     </Box>
   );
