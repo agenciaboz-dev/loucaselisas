@@ -72,6 +72,7 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
                 instagram: values.instagram,
                 tiktok: values.tiktok,
             }
+            
             if (image) {
                 const data: UserImageForm = {
                     image: {
@@ -82,6 +83,7 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
                 }
                 io.emit("user:image:update", data)
             }
+            
             if (cover) {
                 const data: UserImageForm = {
                     cover: {

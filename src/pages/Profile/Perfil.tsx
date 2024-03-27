@@ -239,6 +239,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                     </Box>
                                     <ArrowRightIcon />
                                 </ButtonLisas>
+                                <ButtonLisas onClick={()=> navigate("/account/add-courses")}> Adicionar cursos</ButtonLisas>
                             </Box>
                         </Box>
                     </Box>
