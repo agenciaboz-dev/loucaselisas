@@ -11,7 +11,6 @@ import { useCardNumberMask } from "burgos-masks"
 import MaskedInput from "../../../components/MaskedInput"
 import { PaymentCardForm } from "../../../types/server/class/PaymentCard"
 import { useIo } from "../../../hooks/useIo"
-import { useUser } from "../../../hooks/useUser"
 import { useSnackbar } from "burgos-snackbar"
 
 interface AddCardProps {
@@ -23,26 +22,25 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
     const mask = useCardNumberMask()
     const io = useIo()
     const [loading, setLoading] = useState(false)
-    const { setUser } = useUser()
     const { snackbar } = useSnackbar()
 
     const currentCardId = useParams().id
-    const currentCard = user.payment_cards.find((card)=> card.id == currentCardId) 
+    const currentCard = user.payment_cards.find((card) => card.id == currentCardId)
 
     //const current_id = Number(useParams().id)
     //const current_user = user.list.find((user) => user.id == current_id)
 
-
     const formik = useFormik<PaymentCardForm>({
-        initialValues:  currentCard? 
-        {...currentCard} :  {
-            cvc: "",
-            number: "",
-            owner: "",
-            type: "credit",
-            validity: "",
-            id: "",
-        },
+        initialValues: currentCard
+            ? { ...currentCard }
+            : {
+                  cvc: "",
+                  number: "",
+                  owner: "",
+                  type: "credit",
+                  validity: "",
+                  id: "",
+              },
 
         onSubmit: (values) => {
             if (loading) return
@@ -50,18 +48,19 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
             setLoading(true)
             const data: Partial<UserForm> & { id: string } = {
                 id: user.id,
-                payment_cards: [...user.payment_cards.filter(card => card.id !== values.id), values],
+                payment_cards: [...user.payment_cards.filter((card) => card.id !== values.id), values],
             }
             io.emit("user:update", data)
         },
     })
 
     useEffect(() => {
-        io.on("user:update", (user: User) => {
-            setLoading(false)
-            setUser(user)
-            snackbar({ severity: "success", text: "Cartão atualizado com sucesso" })
-            navigate("/account/cards")
+        io.on("user:update", (data: User) => {
+            if (data.id == user.id) {
+                setLoading(false)
+                snackbar({ severity: "success", text: "Cartão atualizado com sucesso" })
+                navigate("/account/cards")
+            }
         })
         io.on("user:update:error", (error: string) => {
             setLoading(false)
