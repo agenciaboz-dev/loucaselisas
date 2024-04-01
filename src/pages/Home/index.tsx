@@ -1,7 +1,6 @@
 import { Box, SxProps } from "@mui/material"
 import React from "react"
 import Logo from "../../assets/Logo/logo.webp"
-import { colors } from "../../styles/colors"
 import { ButtonLisas } from "../../components/ButtonLisas"
 import { useNavigate } from "react-router-dom"
 
@@ -16,7 +15,7 @@ export const Home: React.FC<HomeProps> = ({}) => {
             sx={{
                 height: "100%",
                 width: "100%",
-                bgcolor: colors.primary,
+                bgcolor: "primary.main",
                 padding: "4vw",
                 justifyContent: "center",
                 alignItems: "center",

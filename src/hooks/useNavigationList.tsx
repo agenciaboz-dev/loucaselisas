@@ -5,12 +5,11 @@ import { LiaHeart } from "react-icons/lia"
 import { SlSettings } from "react-icons/sl"
 import { CiGrid41 } from "react-icons/ci"
 import { LiaUserEditSolid } from "react-icons/lia"
-import { colors } from "../styles/colors"
 
 export const useNavigationList = () => {
     const { user } = useUser()
 
-    const iconStyle = { color: colors.primary, height: "6vw", width: "6vw" }
+    const iconStyle = { color: "primary", height: "6vw", width: "6vw" }
 
     const admin: NavigationMenu = {
         id: 1,

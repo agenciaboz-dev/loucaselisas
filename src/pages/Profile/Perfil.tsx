@@ -1,6 +1,5 @@
 import { Box, Avatar as Image } from "@mui/material"
 import React, { useState } from "react"
-import { colors } from "../../styles/colors"
 import { User } from "../../types/server/class"
 import { ButtonLisas } from "../../components/ButtonLisas"
 import { ArrowRightIcon } from "@mui/x-date-pickers"
@@ -24,15 +23,8 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
         <Box sx={{ width: 1, flex: 1, flexDirection: "column", overflowY: "auto" }}>
             <Box sx={{ width: 1, height: 0.9, padding: "3vw" }}>
                 <Box sx={{ width: 1, padding: "1vw", alignItems: "center" }}>
-                    <Image
-                        src={user.cover || ""}
-                        sx={{ width: 1, height: "35vw", borderRadius: "3vw", bgcolor: colors.terciary }}
-                    ></Image>
-                    <Image
-                        src={user.image || ""}
-                        variant="circular"
-                        sx={{ width: "25vw", height: "25vw", position: "relative", bottom: "15vw" }}
-                    />
+                    <Image src={user.cover || ""} sx={{ width: 1, height: "35vw", borderRadius: "3vw", bgcolor: "#ECE6F0" }}></Image>
+                    <Image src={user.image || ""} variant="circular" sx={{ width: "25vw", height: "25vw", position: "relative", bottom: "15vw" }} />
                     <Box
                         sx={{
                             flexDirection: "row",
@@ -69,10 +61,9 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                     maxWidth: "400px",
                                 }}
                             >
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure
+                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in
+                                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                             </p>
                             <p
                                 style={{
@@ -110,7 +101,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                     fontWeight: "600",
                                     bgcolor: "#66625D",
                                     padding: "1vw",
-                                    color: colors.secondary,
+                                    color: "Secondary.main",
                                     fontSize: "0.9rem",
                                     gap: "1.5vw",
                                 }}
@@ -239,7 +230,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                     </Box>
                                     <ArrowRightIcon />
                                 </ButtonLisas>
-                                <ButtonLisas onClick={()=> navigate("/account/add-courses")}> Adicionar cursos</ButtonLisas>
+                                <ButtonLisas onClick={() => navigate("/account/add-courses")}> Adicionar cursos</ButtonLisas>
                             </Box>
                         </Box>
                     </Box>

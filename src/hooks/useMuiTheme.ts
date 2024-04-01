@@ -1,6 +1,12 @@
 import { createTheme } from "@mui/material"
-import { colors } from "../styles/colors"
 import { deDE } from "@mui/x-date-pickers/locales"
+
+export const colors = {
+    primary: "#000",
+    secondary: "#fff",
+    terciary: "#ECE6F0",
+}
+
 export const useMuiTheme = () => {
     const THEME = createTheme(
         {
@@ -16,17 +22,23 @@ export const useMuiTheme = () => {
                 // mode: 'dark',
 
                 primary: {
-                    main: colors.primary,
+                    main: "#000",
+                    "200": "#ECE6F0",
                 },
                 secondary: {
-                    main: colors.secondary,
+                    main: "#FFF",
                 },
 
                 text: {
-                    primary: colors.primary,
-                    secondary: colors.secondary,
-                    // disabled: colors.primary,
+                    primary: "#000",
+                    secondary: "#000",
+                    // disabled: "#000",
                 },
+
+                background: {
+                    paper: "#F8F8F8",
+                },
+
                 error: { main: "#B3261E" },
             },
         },

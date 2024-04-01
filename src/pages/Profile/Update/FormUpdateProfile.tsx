@@ -15,16 +15,7 @@ import media from "../../../assets/media.png"
 import { UserImageForm } from "../../../types/server/class/User"
 import { FcAddImage } from "react-icons/fc"
 import { FiMoreHorizontal } from "react-icons/fi"
-import {
-    IoAddCircle,
-    IoAddCircleOutline,
-    IoClose,
-    IoCloseCircleOutline,
-    IoCloseOutline,
-    IoTrash,
-    IoTrashOutline,
-} from "react-icons/io5"
-import { colors } from "../../../styles/colors"
+import { IoAddCircle, IoAddCircleOutline, IoClose, IoCloseCircleOutline, IoCloseOutline, IoTrash, IoTrashOutline } from "react-icons/io5"
 import { ArrowRightIcon } from "@mui/x-date-pickers"
 import { DialogConfirm } from "../../../components/DialogConfirm"
 
@@ -237,13 +228,7 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
 
                 <Box sx={{ gap: "6vw", pb: "2vw", bgcolor: "rgba(248, 248, 248, 1)", p: "4vw", borderRadius: "3vw" }}>
                     <Box sx={{ gap: "4vw" }}>
-                        <TextFieldLisas
-                            name="name"
-                            label="Nome"
-                            placeholder="Nome "
-                            value={formik.values.name}
-                            onChange={formik.handleChange}
-                        />
+                        <TextFieldLisas name="name" label="Nome" placeholder="Nome " value={formik.values.name} onChange={formik.handleChange} />
                         <TextFieldLisas
                             name="username"
                             label="Nome de usuário"
@@ -374,15 +359,14 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
                         sx={{
                             p: "2.5vw",
                             pl: "3.5vw",
-                            border: `1px solid ${colors.delete}`,
+                            border: `1px solid "error.main`,
                             borderRadius: "3vw",
                             gap: "2vw",
                         }}
                     >
                         <p style={{ fontSize: "1rem", fontWeight: "600" }}>Área Perigosa</p>
                         <p style={{ fontSize: "0.8rem" }}>
-                            Informações sobre a política de exclusão de conta{" "}
-                            <span style={{ textDecoration: "underline" }}>aqui</span>.
+                            Informações sobre a política de exclusão de conta <span style={{ textDecoration: "underline" }}>aqui</span>.
                         </p>
                         <Box
                             sx={{
@@ -423,8 +407,7 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
                     data={{
                         title: "Tem certeza que deseja excluir sua conta? ",
                         submitTitle: "Sim, excluir",
-                        content:
-                            "Ao excluir conta você perderá todos os seus dados e acessos. Esse processo é irreversível.",
+                        content: "Ao excluir conta você perderá todos os seus dados e acessos. Esse processo é irreversível.",
                         cancelTitle: "Não, cancelar",
                     }}
                     click={() => {

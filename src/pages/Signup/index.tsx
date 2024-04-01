@@ -1,6 +1,5 @@
 import { Box, MenuItem, TextField, ThemeProvider, createTheme } from "@mui/material"
 import React, { useEffect, useState } from "react"
-import { colors } from "../../styles/colors"
 import Logo from "../../assets/Logo/logo.webp"
 import { textField } from "../../styles/textField"
 import { useIo } from "../../hooks/useIo"
@@ -88,7 +87,7 @@ export const Signup: React.FC<SignupProps> = ({}) => {
             sx={{
                 height: "100%",
                 width: "100%",
-                bgcolor: colors.secondary,
+                bgcolor: "secondary.main",
                 justifyContent: "center",
                 alignItems: "center",
                 gap: "5vw",
@@ -96,21 +95,12 @@ export const Signup: React.FC<SignupProps> = ({}) => {
                 overflowY: "auto",
             }}
         >
-            <img
-                src={Logo}
-                style={{ width: "45vw", height: "45vw", filter: "invert(1)" }}
-                onClick={() => navigate("/home")}
-            />
+            <img src={Logo} style={{ width: "45vw", height: "45vw", filter: "invert(1)" }} onClick={() => navigate("/home")} />
             <p style={{ marginLeft: "7vw", alignSelf: "flex-start" }}>Cadastre seus dados</p>
 
             <form onSubmit={formik_signup.handleSubmit}>
                 <Box sx={{ width: "90%", alignItems: "center" }}>
-                    <Form
-                        values={formik_signup.values}
-                        handleChange={formik_signup.handleChange}
-                        pickDate={pickDate}
-                        setPickDate={setPickDate}
-                    />
+                    <Form values={formik_signup.values} handleChange={formik_signup.handleChange} pickDate={pickDate} setPickDate={setPickDate} />
                 </Box>
                 <Box sx={{ width: "100%", alignItems: "center" }}>
                     <ButtonLisas sx={{ fontSize: "3.5vw", width: "50%" }} invert type="submit">

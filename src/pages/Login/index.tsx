@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import { colors } from "../../styles/colors"
 import { Box, TextField } from "@mui/material"
 import Logo from "../../assets/Logo/logo.webp"
 import { useFormik } from "formik"
@@ -57,18 +56,14 @@ export const Login: React.FC<LoginProps> = ({}) => {
             sx={{
                 height: "100%",
                 width: "100%",
-                bgcolor: colors.secondary,
+                bgcolor: "secondary.main",
                 padding: "4vw",
                 justifyContent: "center",
                 alignItems: "center",
                 gap: "6vw",
             }}
         >
-            <img
-                src={Logo}
-                style={{ width: "68vw", height: "68vw", filter: "invert(1)" }}
-                onClick={() => navigate("/home")}
-            />
+            <img src={Logo} style={{ width: "68vw", height: "68vw", filter: "invert(1)" }} onClick={() => navigate("/home")} />
             <p>Entre na sua conta</p>
 
             <form onSubmit={formik_login.handleSubmit}>
@@ -94,15 +89,13 @@ export const Login: React.FC<LoginProps> = ({}) => {
                             required
                         />
                     </Box>
-                    <ButtonLisas
-                        sx={{ fontSize: "3vw", textDecoration: "underline", alignSelf: "end" }}
-                        onClick={() => navigate("/signup")}
-                    >
+                    <ButtonLisas sx={{ fontSize: "3vw", textDecoration: "underline", alignSelf: "end" }}
+                        onClick={() => navigate("/signup")}>
                         Cadastre-se
                     </ButtonLisas>
                 </Box>
                 <Box sx={{ width: "100%", alignItems: "center", gap: "2vw" }}>
-                    <ButtonLisas sx={{ fontSize: "3.5vw", width: "60%" }} variant='contained' type="submit">
+                    <ButtonLisas sx={{ fontSize: "3.5vw", width: "60%" }} variant="contained" type="submit">
                         Entrar
                     </ButtonLisas>
                     <ButtonLisas

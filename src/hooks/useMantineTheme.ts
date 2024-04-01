@@ -1,5 +1,5 @@
 import { createTheme } from "@mantine/core"
-import { colors } from "../styles/colors"
+import { colors } from "../../src/hooks/useMuiTheme.ts"
 
 export const useMantineTheme = () => {
     const theme = createTheme({

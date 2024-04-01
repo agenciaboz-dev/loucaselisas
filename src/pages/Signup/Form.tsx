@@ -1,6 +1,6 @@
 import React from "react"
 import { User, UserForm } from "../../types/server/class"
-import { Box, MenuItem, TextField, ThemeProvider, createTheme } from "@mui/material"
+import { Box, MenuItem, TextField, ThemeProvider, createTheme, useTheme } from "@mui/material"
 import { LocalizationProvider, MobileDatePicker, ptBR } from "@mui/x-date-pickers"
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo"
@@ -12,7 +12,6 @@ import MaskedInputNando from "../../components/MaskedNando"
 import { useCpfMask, usePhoneMask } from "burgos-masks"
 import { useEstadosBrasil } from "../../hooks/useEstadosBrasil"
 import { usePronoun } from "../../hooks/usePronoun"
-import { colors } from "../../styles/colors"
 import { TextFieldLisas } from "../../components/TextFieldLisas"
 
 interface FormProps {
@@ -21,6 +20,8 @@ interface FormProps {
     pickDate: dayjs.Dayjs | null
     setPickDate: React.Dispatch<React.SetStateAction<dayjs.Dayjs | null>>
 }
+
+const colors = useTheme().palette
 
 const newTheme = (theme: any) =>
     createTheme({
@@ -32,7 +33,7 @@ const newTheme = (theme: any) =>
                         color: "#fff",
 
                         borderWidth: 0,
-                        backgroundColor: colors.primary,
+                        backgroundColor: colors.primary.main,
                     },
                 },
             },
@@ -48,7 +49,7 @@ const newTheme = (theme: any) =>
             MuiPickersDay: {
                 styleOverrides: {
                     root: {
-                        color: colors.primary,
+                        color: colors.primary.main,
                         borderRadius: 20,
                         borderWidth: 0,
                     },

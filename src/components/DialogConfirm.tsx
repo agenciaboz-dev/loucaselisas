@@ -10,7 +10,6 @@ import {
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import { User } from "../types/server/class"
-import { colors } from "../styles/colors"
 
 interface DialogConfirmProps {
     open: boolean
@@ -47,21 +46,22 @@ export const DialogConfirm: React.FC<DialogConfirmProps> = ({ user, open, setOpe
                 }
             }}
         >
-            <DialogTitle id="alert-dialog-title" sx={{ color: colors.text.white, fontSize: "4.5vw" }}>
+            <DialogTitle id="alert-dialog-title" sx={{ color: "secondary.main", fontSize: "4.5vw" }}>
                 {data.title}
             </DialogTitle>
             <DialogContent sx={{ gap: "6vw", display: "flex", flexDirection: "column" }}>
-                <DialogContentText id="alert-dialog-description" sx={{ color: colors.text.white, fontSize: "3vw" }}>
+                <DialogContentText id="alert-dialog-description" sx={{ color: "secondary.main", fontSize: "3vw" }}>
+                    oi
                     {data.content}
                 </DialogContentText>
                 {children}
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose} sx={{ color: colors.text.white, textTransform: "none" }}>
+                <Button onClick={handleClose} sx={{ color: "secondary.main", textTransform: "none" }}>
                     {data.cancelTitle}
                 </Button>
-                <Button onClick={click} autoFocus sx={{ color: colors.text.white, textTransform: "none" }}>
-                    {loading ? <CircularProgress sx={{ color: "#fff" }} /> : data.submitTitle}
+                <Button onClick={click} autoFocus sx={{ color: "secondary.main", textTransform: "none" }}>
+                    {loading ? <CircularProgress sx={{ color: "secondary.main#fff" }} /> : data.submitTitle}
                 </Button>
             </DialogActions>
         </Dialog>

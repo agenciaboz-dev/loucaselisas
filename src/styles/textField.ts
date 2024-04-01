@@ -1,9 +1,9 @@
 import { SxProps } from "@mui/material"
-import { colors } from "./colors"
+import { colors } from "../hooks/useMuiTheme"
 
 export const textField = {
     "& .MuiInputLabel-root.Mui-focused ": {
-        color: colors.primary,
+        color: "primary.main",
         // Removendo a propriedade border
     },
     "& .MuiInputLabel-root ": {

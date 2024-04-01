@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { BottomNavigationAction, BottomNavigation as MuiBottomNav } from "@mui/material"
+import { BottomNavigationAction, BottomNavigation as MuiBottomNav, useTheme } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-import { colors } from "../styles/colors"
 
 interface BottomNavigationProps {
     external?: boolean
@@ -10,6 +9,8 @@ interface BottomNavigationProps {
 
 export const BottomNavigation: React.FC<BottomNavigationProps> = ({ external, section }) => {
     const navigate = useNavigate()
+
+    const colors = useTheme().palette
 
     const [currentLocation, setCurrentLocation] = useState<
         | {
@@ -45,11 +46,11 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({ external, se
             }}
         >
             <BottomNavigationAction value={0} sx={{ display: "none" }} />
-            {section.bottom?.map((item,index) => {
+            {section.bottom?.map((item, index) => {
                 return (
                     <BottomNavigationAction
                         key={item.id}
-                        label={<p style={{ fontSize: "2.5vw", color: colors.primary }}>{item.title}</p>}
+                        label={<p style={{ fontSize: "2.5vw", color: colors.primary.main }}>{item.title}</p>}
                         icon={
                             <span
                                 style={{
@@ -69,12 +70,12 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({ external, se
                         }
                         value={item.id}
                         sx={{
-                            color: currentLocation?.id === item.id ? colors.primary : "",
+                            color: currentLocation?.id === item.id ? colors.primary.main : "",
                             borderRadius: "2vw",
                             gap: "1vw",
 
                             "&.Mui-selected": {
-                                color: colors.primary,
+                                color: colors.primary.main,
                             },
                         }}
                     />

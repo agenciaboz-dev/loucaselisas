@@ -1,7 +1,5 @@
 import { Button, ButtonProps, CircularProgress, SxProps } from "@mui/material"
 import React from "react"
-import { colors } from "../styles/colors"
-
 interface ButtonLisasProps extends ButtonProps {
     invert?: boolean
     loading?: boolean
