@@ -21,7 +21,7 @@ interface FormProps {
     setPickDate: React.Dispatch<React.SetStateAction<dayjs.Dayjs | null>>
 }
 
-const colors = useTheme().palette
+// const colors = useTheme().palette
 
 const newTheme = (theme: any) =>
     createTheme({
@@ -33,7 +33,7 @@ const newTheme = (theme: any) =>
                         color: "#fff",
 
                         borderWidth: 0,
-                        backgroundColor: colors.primary.main,
+                        backgroundColor: "#000",
                     },
                 },
             },
@@ -49,7 +49,7 @@ const newTheme = (theme: any) =>
             MuiPickersDay: {
                 styleOverrides: {
                     root: {
-                        color: colors.primary.main,
+                        color: "#000",
                         borderRadius: 20,
                         borderWidth: 0,
                     },
