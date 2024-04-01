@@ -3,7 +3,6 @@ import { Routes, Route, useNavigate } from "react-router-dom"
 import { User } from "../../types/server/class"
 import { Panel } from "../Panel"
 import { Profile } from "../Profile"
-import { AdminNavigation } from "../../components/panel/AdminNavigation"
 import { Box, Tab, Tabs } from "@mui/material"
 
 interface AdminProps {
