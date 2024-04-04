@@ -1,5 +1,4 @@
 import "./App.css"
-import { MantineProvider } from "@mantine/core"
 import { useMuiTheme } from "./hooks/useMuiTheme"
 import { ThemeProvider } from "@emotion/react"
 import { BrowserRouter } from "react-router-dom"
@@ -11,15 +10,13 @@ function App() {
     const theme = useMuiTheme()
     return (
         <ThemeProvider theme={theme}>
-            <MantineProvider>
-                <BrowserRouter>
-                    <Providers>
-                        <Box sx={{ height: 1 }}>
-                            <Routes />
-                        </Box>
-                    </Providers>
-                </BrowserRouter>
-            </MantineProvider>
+            <BrowserRouter>
+                <Providers>
+                    <Box sx={{ height: 1 }}>
+                        <Routes />
+                    </Box>
+                </Providers>
+            </BrowserRouter>
         </ThemeProvider>
     )
 }

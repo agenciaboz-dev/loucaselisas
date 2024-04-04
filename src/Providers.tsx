@@ -3,8 +3,6 @@ import { Snackbar, SnackbarProvider } from "burgos-snackbar"
 import { IoProvider } from "./contexts/ioContext"
 import { MenuDrawerProvider } from "./contexts/menuDrawerContext"
 import { HeaderProvider } from "./contexts/headerContext"
-import { MantineProvider } from "@mantine/core"
-import { useMantineTheme } from "./hooks/useMantineTheme"
 import { MenuDrawer } from "./components/MenuDrawer"
 import { UserProvider } from "./contexts/userContext"
 import { ThemeProvider } from "@mui/material"
@@ -16,7 +14,6 @@ interface ProvidersProps {
 }
 
 export const Providers: React.FC<ProvidersProps> = ({ children }) => {
-    const mantine_theme = useMantineTheme()
     const theme = useMuiTheme()
 
     return (
@@ -31,7 +28,7 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
                                         <Snackbar />
                                         <ConfirmDialog />
                                         <MenuDrawer />
-                                        <MantineProvider theme={mantine_theme}>{children}</MantineProvider>
+                                        {children}
                                     </HeaderProvider>
                                 </MenuDrawerProvider>
                             </UserProvider>
