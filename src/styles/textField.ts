@@ -19,12 +19,12 @@ export const textField = {
     "& .MuiOutlinedInput-input": {
         height: "2vw",
     },
-    // "& .MuiInputBase-input.MuiOutlinedInput-input:-webkit-autofill": {
-    //     "-webkit-box-shadow": ` 0 0 0 100px ${colors.secondary} inset`,
-    //     borderRadius: "1vw",
-    //     color: "#fff",
-    //     bgcolor: "",
-    // },
+    "& .MuiInputBase-input.MuiOutlinedInput-input:-webkit-autofill": {
+        WebkitBoxShadow: ` 0 0 0 100px ${colors.secondary} inset`,
+        borderRadius: "1vw",
+        color: "#fff",
+        bgcolor: "",
+    },
 }
 export const searchField = {
     "& .MuiInputLabel-root.Mui-focused ": {
@@ -48,7 +48,7 @@ export const searchField = {
         height: "4vw",
     },
     "& .MuiInputBase-input.MuiOutlinedInput-input:-webkit-autofill": {
-        // "-webkit-box-shadow": ` 0 0 0 100px ${colors.secondary} inset`,
+        WebkitBoxShadow: ` 0 0 0 100px ${colors.secondary} inset`,
         borderRadius: "1vw",
         color: "#fff",
         bgcolor: "",

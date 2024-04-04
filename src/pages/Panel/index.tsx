@@ -28,7 +28,7 @@ const box_container_courses_style = {
     overflowX: "scroll",
     padding: "0 4vw",
     scrollbarWidth: "none",
-    "-ms-overflow-style": "none",
+    msOverflowStyle: "none",
     "&::-webkit-scrollbar": {
         width: "0",
         height: "0",
@@ -41,15 +41,15 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
         <Box sx={{ width: "100%", flex: 1, flexDirection: "column", p: "4vw" }}>
             <Box sx={{ width: "100%", alignItems: "center", gap: "3vw" }}>
                 <Box sx={box_container_courses_style}>
-                    {chips.map((item) => (
-                        <ButtonLisas variant="outlined" sx={button_style}>
+                    {chips.map((item, index) => (
+                        <ButtonLisas variant="outlined" sx={button_style} key={index}>
                             Filtro
                         </ButtonLisas>
                     ))}
                 </Box>
                 <Box sx={box_container_courses_style}>
-                    {chips.map((item) => (
-                        <ThumbCourses />
+                    {chips.map((item, index) => (
+                        <ThumbCourses key={index} />
                     ))}
                 </Box>
                 <Box sx={{ width: 1, gap: "4vw", overflowY: "auto" }}>
@@ -58,8 +58,8 @@ export const Panel: React.FC<PanelProps> = ({ user }) => {
                         <Search />
                     </Box>
                     <Box sx={{ gap: "0vw", overflowY: "auto" }}>
-                        {chips.map((item) => (
-                            <CardCourse />
+                        {chips.map((item, index) => (
+                            <CardCourse key={index} />
                         ))}
                     </Box>
                 </Box>
