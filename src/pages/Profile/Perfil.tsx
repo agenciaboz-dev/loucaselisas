@@ -96,13 +96,13 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                             </Box>
                             <ButtonLisas
                                 sx={{
-                                    width: 0.65,
+                                    width: 0.7,
                                     height: "9vw",
                                     fontWeight: "600",
                                     bgcolor: "#66625D",
                                     padding: "1vw",
-                                    color: "Secondary.main",
-                                    fontSize: "0.9rem",
+                                    color: "secondary.main",
+                                    fontSize: "0.75rem",
                                     gap: "1.5vw",
                                 }}
                             >
@@ -230,7 +230,7 @@ export const Perfil: React.FC<PerfilProps> = ({ user }) => {
                                     </Box>
                                     <ArrowRightIcon />
                                 </ButtonLisas>
-                                <ButtonLisas onClick={() => navigate("/account/add-courses")}> Adicionar cursos</ButtonLisas>
+                                {/* <ButtonLisas onClick={() => navigate("/account/add-courses")}> Adicionar cursos</ButtonLisas> */}
                             </Box>
                         </Box>
                     </Box>
