@@ -41,9 +41,8 @@ export const Card: React.FC<CardProps> = ({ card, user}) => {
   }
 
   useEffect(() => {
-    io.on("user:update", (user: User) => {
+    io.on("user:update:success", () => {
         setLoading(false)
-        setUser(user)
         snackbar({ severity: "success", text: "Cartão excluido com sucesso" })
     })
     io.on("user:update:error", (error: string) => {
@@ -51,7 +50,7 @@ export const Card: React.FC<CardProps> = ({ card, user}) => {
         snackbar({ severity: "error", text: error })
     })
     return () => {
-        io.off("user:update")
+        io.off("user:update:success")
         io.off("user:update:error")
     }
 }, [])

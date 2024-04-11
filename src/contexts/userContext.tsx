@@ -48,5 +48,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
             io.off("user:update")
         }
     }, [user])
+
     return <UserContext.Provider value={{ user, setUser, logout, list }}>{children}</UserContext.Provider>
 }

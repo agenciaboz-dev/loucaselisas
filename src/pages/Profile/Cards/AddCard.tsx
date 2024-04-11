@@ -55,19 +55,17 @@ export const AddCard: React.FC<AddCardProps> = ({ user }) => {
     })
 
     useEffect(() => {
-        io.on("user:update", (data: User) => {
-            if (data.id == user.id) {
-                setLoading(false)
-                snackbar({ severity: "success", text: "Cartão atualizado com sucesso" })
-                navigate("/account/cards")
-            }
+        io.on("user:update:success", () => {
+            setLoading(false)
+            snackbar({ severity: "success", text: "Cartão atualizado com sucesso" })
+            navigate("/account/cards")
         })
         io.on("user:update:error", (error: string) => {
             setLoading(false)
             snackbar({ severity: "error", text: error })
         })
         return () => {
-            io.off("user:update")
+            io.off("user:update:success")
             io.off("user:update:error")
         }
     }, [])

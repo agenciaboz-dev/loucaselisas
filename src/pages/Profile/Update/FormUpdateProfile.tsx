@@ -1,4 +1,4 @@
-import { Box, IconButton, MenuItem } from "@mui/material"
+import { Box, CircularProgress, IconButton, MenuItem } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { useFormik } from "formik"
 import { TextFieldLisas } from "../../../components/TextFieldLisas"
@@ -46,7 +46,7 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
         },
 
         onSubmit: (values) => {
-            if (loading) return
+            // if (loading) return
             console.log(values)
             setLoading(true)
             const data: Partial<UserForm> & { id: string } = {
@@ -63,7 +63,7 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
                 instagram: values.instagram,
                 tiktok: values.tiktok,
             }
-            
+
             if (image) {
                 const data: UserImageForm = {
                     image: {
@@ -74,7 +74,7 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
                 }
                 io.emit("user:image:update", data)
             }
-            
+
             if (cover) {
                 const data: UserImageForm = {
                     cover: {
@@ -90,9 +90,8 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
     })
 
     useEffect(() => {
-        io.on("user:update", (user: User) => {
+        io.on("user:update:success", () => {
             setLoading(false)
-            setUser(user)
             snackbar({ severity: "success", text: "Usuário atualizado com sucesso" })
             // navigate("/account")
         })
@@ -101,17 +100,7 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
             snackbar({ severity: "error", text: error })
             console.log(error)
         })
-        return () => {
-            io.off("user:update")
-            io.off("user:update:error")
-        }
-    }, [])
 
-    const handleDelete = () => {
-        if (user) io.emit("user:delete", user.id)
-    }
-
-    useEffect(() => {
         io.on("user:delete", (user: User) => {
             snackbar({ severity: "info", text: "Usuário excluído com sucesso!" })
             // removeUser(user) removerUsuário da lista de users
@@ -121,7 +110,18 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
         io.on("user:delete:error", (user: User) => {
             snackbar({ severity: "error", text: "Aldo deu errado! tente novamente mais tarde." })
         })
+
+        return () => {
+            io.off("user:update:success")
+            io.off("user:update:error")
+            io.off("user:delete")
+            io.off("user:delete:error")
+        }
     }, [])
+
+    const handleDelete = () => {
+        if (user) io.emit("user:delete", user.id)
+    }
 
     return (
         <Box sx={{ overflowY: "auto", gap: "5vw" }}>
@@ -352,7 +352,7 @@ export const FormUpdateProfile: React.FC<FormUpdateProfileProps> = ({ user }) =>
                         alignSelf: "center",
                     }}
                 >
-                    Salvar Perfil
+                    {loading ? <CircularProgress size="1.5rem" color="secondary" /> : "Salvar Perfil"}
                 </ButtonLisas>
                 <Box sx={{ p: "2vw" }}>
                     <Box
